@@ -1,0 +1,18 @@
+{
+  "name": "pecan-lakes-property",
+  "version": "1.0.0",
+  "description": "Premium real estate website for 12401 SW Pecan Lakes Cir, Lawton, OK",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'No build step needed for this static site'"
+  },
+  "keywords": [
+    "real-estate",
+    "lawton",
+    "oklahoma",
+    "pecan-lakes"
+  ],
+  "author": "Eli Garcia",
+  "license": "UNLICENSED"
+}

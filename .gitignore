@@ -1,0 +1,15 @@
+# Large media files - only web-optimized versions in assets/
+node_modules/
+.env
+.env.local
+.DS_Store
+*.orig
+Original folders/
+01 - AGENT MLS ZILLOW FINAL/
+02 - HERO IMAGES/
+03 - SOCIAL CAROUSEL/
+04 - REEL VIDEO ASSETS/
+05 - META AD CREATIVE/
+06 - SECONDARY BACKUP/
+07 - DO NOT USE/
+.claude/
