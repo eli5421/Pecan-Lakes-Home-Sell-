@@ -49,3 +49,4 @@ This site is deployed on Vercel. Updates to the repository are automatically dep
 For showing inquiries, call (580) 498-0224 to reach the property owner.
 
 Listing agent: April Elkouri, Real Estate Experts, LLC
+# Deployment triggered: Tue Sep 29 13:13:23 CDT 2026
