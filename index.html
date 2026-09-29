@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12401 SW Pecan Lakes Cir - Luxury Home with Water Views | Lawton, OK</title>
-    <meta name="description" content="Stunning 4-bed, 2.5-bath home at 12401 SW Pecan Lakes Cir, Lawton, OK. Water views, open kitchen, outdoor entertaining space. $675,000. Call now to schedule your private showing.">
-    <meta name="theme-color" content="#1a4d6d">
+    <title>Pecan Lakes | Luxury Waterfront Estate</title>
+    <meta name="description" content="Extraordinary waterfront home with stunning views, premium finishes, and sophisticated living spaces. 4 bed, 2.5 bath, $675,000.">
+    <meta name="theme-color" content="#0f3a52">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,67 +19,81 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f9f9f9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #fafbfc;
+            letter-spacing: 0.3px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 24px;
         }
 
-        /* Header & Navigation */
+        /* ===== HEADER ===== */
         header {
-            background: white;
-            padding: 16px 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 24px;
         }
 
         .logo {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a4d6d;
-            letter-spacing: -0.5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #0f3a52 0%, #1a5f7a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
         }
 
         .header-link {
-            color: #1a4d6d;
+            color: #0f3a52;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: opacity 0.3s;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 8px 16px;
+            border-radius: 4px;
         }
 
         .header-link:hover {
-            opacity: 0.7;
+            background: rgba(15, 58, 82, 0.08);
+            color: #0f3a52;
+            transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        /* ===== HERO SECTION ===== */
         .hero {
             position: relative;
             height: 100vh;
-            max-height: 600px;
-            background: linear-gradient(135deg, #1a4d6d 0%, #2d6f96 100%);
+            max-height: 700px;
+            background: linear-gradient(135deg, #0f3a52 0%, #1a5f7a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            margin-bottom: 48px;
+            margin-bottom: 80px;
+            border-radius: 0;
         }
 
         .hero::before {
@@ -93,6 +108,12 @@
             background-position: center;
             background-attachment: fixed;
             z-index: 0;
+            animation: zoomIn 20s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(1.05); }
+            to { transform: scale(1); }
         }
 
         .hero::after {
@@ -102,7 +123,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(26, 77, 109, 0.3) 0%, rgba(26, 77, 109, 0.6) 100%);
+            background: linear-gradient(180deg, rgba(15, 58, 82, 0.2) 0%, rgba(15, 58, 82, 0.5) 50%, rgba(15, 58, 82, 0.7) 100%);
             z-index: 1;
         }
 
@@ -111,70 +132,93 @@
             z-index: 2;
             text-align: center;
             color: white;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: clamp(32px, 8vw, 56px);
-            font-weight: 700;
-            line-height: 1.2;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 10vw, 72px);
+            font-weight: 900;
+            line-height: 1.1;
             margin-bottom: 16px;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-size: clamp(16px, 2.5vw, 20px);
+            margin-bottom: 12px;
             opacity: 0.95;
-            font-weight: 400;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         .hero .address {
-            font-size: 16px;
-            margin-bottom: 24px;
+            font-size: 14px;
+            margin-bottom: 32px;
             opacity: 0.9;
-            font-weight: 300;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .price-badge {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
-            border-radius: 24px;
-            font-size: 24px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 28px;
             font-weight: 700;
-            margin-top: 16px;
+            margin-top: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
         }
 
-        /* Call Now Button */
+        /* ===== CALL BUTTON ===== */
         .call-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #d4754f 0%, #c56644 100%);
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
             color: white;
             text-decoration: none;
-            padding: 16px 40px;
+            padding: 18px 48px;
             border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 32px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 16px rgba(212, 117, 79, 0.4);
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 40px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(217, 119, 6, 0.3);
             border: none;
             cursor: pointer;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .call-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(212, 117, 79, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(217, 119, 6, 0.5);
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         .call-button:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
-        /* Fixed Mobile Call Button */
+        /* ===== MOBILE CALL BUTTON ===== */
         @media (max-width: 768px) {
             .call-button-mobile {
                 position: fixed;
@@ -185,143 +229,188 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: linear-gradient(135deg, #d4754f 0%, #c56644 100%);
+                background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
                 color: white;
                 text-decoration: none;
-                padding: 16px;
-                font-size: 18px;
-                font-weight: 600;
+                padding: 18px;
+                font-size: 16px;
+                font-weight: 700;
                 z-index: 200;
                 border: none;
                 cursor: pointer;
                 border-radius: 0;
-                box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
                 transition: all 0.3s ease;
+                letter-spacing: 0.5px;
             }
 
             .call-button-mobile:active {
-                background: linear-gradient(135deg, #c56644 0%, #b65939 100%);
+                background: linear-gradient(135deg, #b45309 0%, #92400e 100%);
             }
 
             body {
-                padding-bottom: 68px;
+                padding-bottom: 76px;
             }
         }
 
-        /* Property Details Section */
+        /* ===== DETAILS SECTION ===== */
         .details-section {
             background: white;
-            padding: 48px 0;
-            margin-bottom: 48px;
+            padding: 80px 0;
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin-bottom: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 48px;
+            margin-bottom: 0;
         }
 
         .detail-card {
             text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(15, 58, 82, 0.02) 0%, rgba(26, 95, 122, 0.02) 100%);
+        }
+
+        .detail-card:hover {
+            background: linear-gradient(135deg, rgba(15, 58, 82, 0.06) 0%, rgba(26, 95, 122, 0.06) 100%);
+            transform: translateY(-4px);
         }
 
         .detail-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #d4754f;
-            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1;
         }
 
         .detail-label {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
+            letter-spacing: 1.5px;
+            font-weight: 700;
         }
 
-        /* About Section */
+        /* ===== ABOUT SECTION ===== */
         .about-section {
             background: white;
-            padding: 48px 0;
-            margin-bottom: 48px;
+            padding: 80px 0;
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .about-content {
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .about-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: #1a4d6d;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 32px;
+            color: #0f3a52;
+            line-height: 1.2;
         }
 
         .about-section p {
-            font-size: 16px;
+            font-size: 17px;
             line-height: 1.8;
             color: #555;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
+            font-weight: 300;
+        }
+
+        .about-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #0f3a52;
+            margin-top: 48px;
+            margin-bottom: 28px;
+            font-weight: 700;
         }
 
         .about-section ul {
             list-style: none;
-            margin: 20px 0;
+            margin: 28px 0;
         }
 
         .about-section li {
-            padding: 12px 0 12px 32px;
+            padding: 16px 0 16px 40px;
             position: relative;
-            font-size: 16px;
+            font-size: 17px;
             color: #555;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 300;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .about-section li:last-child {
+            border-bottom: none;
         }
 
         .about-section li::before {
-            content: '✓';
+            content: '✦';
             position: absolute;
             left: 0;
-            color: #d4754f;
+            color: #d97706;
             font-weight: 700;
             font-size: 18px;
         }
 
-        /* Gallery Section */
+        .about-section strong {
+            color: #0f3a52;
+            font-weight: 600;
+        }
+
+        /* ===== GALLERY SECTION ===== */
         .gallery-section {
-            background: #f9f9f9;
-            padding: 48px 0;
-            margin-bottom: 48px;
+            background: white;
+            padding: 80px 0;
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .gallery-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            color: #1a4d6d;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #0f3a52;
             text-align: center;
+            line-height: 1.2;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
         .gallery-item {
             aspect-ratio: 1;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             background: #e0e0e0;
+            position: relative;
+            group: ~"gallery-item";
         }
 
         .gallery-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.18);
         }
 
         .gallery-item img {
@@ -329,33 +418,41 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Video Section */
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        /* ===== VIDEO SECTION ===== */
         .video-section {
             background: white;
-            padding: 48px 0;
-            margin-bottom: 48px;
+            padding: 80px 0;
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .video-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            color: #1a4d6d;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: #0f3a52;
             text-align: center;
+            line-height: 1.2;
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
         }
 
         .video-container video {
@@ -364,51 +461,77 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 12px;
+            border-radius: 16px;
         }
 
-        /* Listing Link Section */
+        /* ===== LISTING SECTION ===== */
         .listing-section {
-            background: linear-gradient(135deg, #1a4d6d 0%, #2d6f96 100%);
+            background: linear-gradient(135deg, #0f3a52 0%, #1a5f7a 100%);
             color: white;
-            padding: 48px 0;
-            margin-bottom: 48px;
+            padding: 80px 0;
+            margin-bottom: 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .listing-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(217, 119, 6, 0.1);
+            border-radius: 50%;
+            z-index: 0;
         }
 
         .listing-section h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
         }
 
         .listing-section p {
-            font-size: 16px;
-            margin-bottom: 24px;
+            font-size: 17px;
+            margin-bottom: 40px;
             opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
         }
 
         .listing-link {
             display: inline-block;
             background: white;
-            color: #1a4d6d;
+            color: #0f3a52;
             text-decoration: none;
-            padding: 14px 32px;
+            padding: 16px 40px;
             border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
 
         .listing-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.95);
         }
 
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
-            background: #1a4d6d;
+            background: #0a2540;
             color: white;
-            padding: 32px 0;
+            padding: 64px 0 32px;
             font-size: 13px;
             line-height: 1.8;
         }
@@ -416,16 +539,18 @@
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 32px;
-            margin-bottom: 32px;
+            gap: 48px;
+            margin-bottom: 48px;
         }
 
         .footer-section h3 {
-            font-size: 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: #d97706;
         }
 
         .footer-section a {
@@ -433,29 +558,30 @@
             text-decoration: none;
             transition: color 0.3s;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 300;
         }
 
         .footer-section a:hover {
-            color: white;
+            color: #d97706;
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 24px;
+            padding-top: 32px;
             text-align: center;
-            opacity: 0.8;
+            opacity: 0.7;
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
                 max-height: 500px;
-                margin-bottom: 32px;
+                margin-bottom: 60px;
             }
 
             .hero h1 {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             .details-grid {
@@ -473,136 +599,131 @@
             .video-section,
             .listing-section,
             .details-section {
-                padding: 32px 0;
+                padding: 60px 0;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .about-section h2,
+            .gallery-section h2,
+            .video-section h2,
+            .listing-section h2 {
+                font-size: 32px;
             }
         }
 
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
+        /* ===== SCROLL ANIMATIONS ===== */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .mt-large {
-            margin-top: 48px;
-        }
-
-        /* Loading Animation */
-        .lazy-load {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">Pecan Lakes</div>
-            <a href="#" class="header-link" data-track-click="header-listing-link">View on Zillow</a>
+            <div class="logo">PECAN LAKES</div>
+            <a href="#" class="header-link" data-track-click="header-listing-link">Official Listing</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Stunning Water Views</h1>
-            <p>Your retreat awaits in prestigious Pecan Lakes</p>
-            <div class="address">12401 SW Pecan Lakes Cir, Lawton, OK 73505</div>
+            <h1>Extraordinary Waterfront Living</h1>
+            <p>A sanctuary where natural beauty meets sophisticated design</p>
+            <div class="address">12401 SW Pecan Lakes Circle, Lawton, Oklahoma</div>
             <div class="price-badge">$675,000</div>
-            <button class="call-button" id="call-now-btn" data-track-click="hero-call-button">☎ Call Now</button>
+            <button class="call-button" id="call-now-btn" data-track-click="hero-call-button">☎ Schedule Private Showing</button>
         </div>
     </section>
 
-    <!-- Property Details -->
     <section class="details-section">
         <div class="container">
             <div class="details-grid">
-                <div class="detail-card">
+                <div class="detail-card scroll-animate">
                     <div class="detail-number">4</div>
                     <div class="detail-label">Bedrooms</div>
                 </div>
-                <div class="detail-card">
+                <div class="detail-card scroll-animate">
                     <div class="detail-number">2.5</div>
                     <div class="detail-label">Bathrooms</div>
                 </div>
-                <div class="detail-card">
-                    <div class="detail-number">~3,000</div>
+                <div class="detail-card scroll-animate">
+                    <div class="detail-number">~3K</div>
                     <div class="detail-label">Square Feet</div>
                 </div>
-                <div class="detail-card">
-                    <div class="detail-number">$675k</div>
-                    <div class="detail-label">Listing Price</div>
+                <div class="detail-card scroll-animate">
+                    <div class="detail-number">Waterfront</div>
+                    <div class="detail-label">Premier Setting</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about-section">
         <div class="container">
-            <div class="about-content">
-                <h2>Your Dream Home Awaits</h2>
-                <p>Welcome to 12401 SW Pecan Lakes Circle—a home designed for those who cherish life's finest moments. From morning coffee with stunning water views to evening gatherings that bring family together, this property embodies comfort, elegance, and the perfect balance of entertaining and retreat.</p>
+            <div class="about-content scroll-animate">
+                <h2>A Home for Life's Finest Moments</h2>
+                <p>Welcome to an extraordinary property designed for those who appreciate the finer things. This stunning waterfront estate combines luxury, tranquility, and sophisticated living spaces—a rare find in today's market.</p>
 
-                <h3 style="font-size: 20px; color: #1a4d6d; margin-top: 32px; margin-bottom: 16px;">Why You'll Love This Home</h3>
+                <h3>What Makes This Special</h3>
                 <ul>
-                    <li><strong>Breathtaking Water Views</strong> — Enjoy serene water views from multiple rooms, perfect for peaceful mornings and relaxing evenings</li>
-                    <li><strong>Open Kitchen & Living</strong> — Spacious, flowing design that keeps your family connected and creates the perfect entertaining space</li>
-                    <li><strong>Primary Suite Retreat</strong> — A luxurious master bedroom that serves as your personal sanctuary</li>
-                    <li><strong>Game Room Paradise</strong> — Dedicated space for the kids to play and family to gather together</li>
-                    <li><strong>Covered Outdoor Living</strong> — Beautifully designed outdoor kitchen and patio for entertaining and relaxation</li>
-                    <li><strong>Prestigious Pecan Lakes Setting</strong> — Located in one of Lawton's most sought-after waterfront communities</li>
+                    <li><strong>Breathtaking Water Views</strong> — Expansive vistas from multiple rooms, perfect for morning coffee and evening contemplation</li>
+                    <li><strong>Open Living Design</strong> — Seamlessly flowing spaces that encourage family connection and entertaining</li>
+                    <li><strong>Premier Kitchen</strong> — Modern finishes and thoughtful layout for culinary enthusiasts</li>
+                    <li><strong>Primary Suite Sanctuary</strong> — A luxurious retreat designed for ultimate relaxation</li>
+                    <li><strong>Game Room Paradise</strong> — Dedicated entertainment space for the entire family</li>
+                    <li><strong>Outdoor Living</strong> — Covered entertaining areas perfect for gatherings and quiet moments</li>
+                    <li><strong>Prestigious Location</strong> — Pecan Lakes community offers privacy, beauty, and proximity to amenities</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="gallery-section">
         <div class="container">
-            <h2>Explore Every Room</h2>
+            <h2>Visual Tour</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="assets/images/aerial-pond.jpg" alt="Aerial view of home with pond" loading="lazy">
+                <div class="gallery-item scroll-animate">
+                    <img src="assets/images/hero.jpg" alt="Twilight exterior view" loading="lazy">
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/images/outdoor-kitchen.jpg" alt="Outdoor kitchen and entertaining area" loading="lazy">
+                <div class="gallery-item scroll-animate">
+                    <img src="assets/images/aerial-pond.jpg" alt="Aerial view with pond" loading="lazy">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item scroll-animate">
+                    <img src="assets/images/outdoor-kitchen.jpg" alt="Outdoor kitchen and entertaining" loading="lazy">
+                </div>
+                <div class="gallery-item scroll-animate">
                     <img src="assets/images/primary-bedroom.jpg" alt="Primary bedroom suite" loading="lazy">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item scroll-animate">
                     <img src="assets/images/kitchen.jpg" alt="Modern kitchen" loading="lazy">
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/images/great-room.jpg" alt="Great room and living space" loading="lazy">
+                <div class="gallery-item scroll-animate">
+                    <img src="assets/images/great-room.jpg" alt="Great room living space" loading="lazy">
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item scroll-animate">
                     <img src="assets/images/game-room.jpg" alt="Game room" loading="lazy">
                 </div>
-                <div class="gallery-item">
-                    <img src="assets/images/outdoor-living.jpg" alt="Covered outdoor living area" loading="lazy">
-                </div>
-                <div class="gallery-item">
-                    <img src="assets/images/aerial-sunset.jpg" alt="Aerial view at sunset" loading="lazy">
+                <div class="gallery-item scroll-animate">
+                    <img src="assets/images/aerial-sunset.jpg" alt="Aerial sunset view" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Section -->
     <section class="video-section">
         <div class="container">
-            <h2>Tour the Property</h2>
+            <h2>Property Showcase</h2>
             <div class="video-container">
                 <video controls poster="assets/images/hero.jpg">
                     <source src="assets/video/tour.mp4" type="video/mp4">
@@ -612,51 +733,46 @@
         </div>
     </section>
 
-    <!-- Listing Link Section -->
     <section class="listing-section">
         <div class="container">
-            <h2>Ready to Schedule Your Private Showing?</h2>
-            <p>Contact us today to arrange a private tour of this stunning property</p>
-            <button class="call-button" id="call-now-btn-2" data-track-click="listing-section-call-button">☎ Call Now</button>
-            <p style="margin-top: 24px; font-size: 14px;">
-                <a href="#" class="listing-link" data-track-click="footer-zillow-link">View Complete Listing on Zillow</a>
+            <h2>Schedule Your Private Tour</h2>
+            <p>Experience this extraordinary property firsthand. Limited showings available.</p>
+            <button class="call-button" id="call-now-btn-2" data-track-click="listing-section-call-button">☎ Call to Schedule</button>
+            <p style="margin-top: 32px; font-size: 14px;">
+                <a href="#" class="listing-link" data-track-click="footer-zillow-link">View on Zillow</a>
             </p>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Property Address</h3>
-                    <p>12401 SW Pecan Lakes Cir<br>Lawton, OK 73505</p>
+                    <h3>Property</h3>
+                    <p>12401 SW Pecan Lakes Circle<br>Lawton, Oklahoma 73505</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Listing Details</h3>
-                    <p>4 Bedrooms<br>2.5 Bathrooms<br>~3,000 Sq Ft<br>$675,000</p>
+                    <h3>Details</h3>
+                    <p>4 Bedrooms<br>2.5 Bathrooms<br>~3,000 Sq Ft<br>Waterfront Lot</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Reach Out</h3>
-                    <p><strong>To Schedule a Showing:</strong><br>Call (580) 498-0224</p>
-                    <p style="margin-top: 16px;"><strong>Listing Agent:</strong><br>April Elkouri<br>Real Estate Experts, LLC<br><a href="https://www.realestateexpertsllc.com/meet-the-experts">realestateexpertsllc.com</a></p>
+                    <h3>Schedule Showing</h3>
+                    <p><strong>(580) 498-0224</strong></p>
+                    <p style="margin-top: 16px;">Listing Agent:<br><strong>April Elkouri</strong><br>Real Estate Experts, LLC<br><a href="https://www.realestateexpertsllc.com/meet-the-experts">realestateexpertsllc.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Pecan Lakes Property. All rights reserved. | <a href="#" style="color: rgba(255, 255, 255, 0.8);">Privacy Policy</a></p>
+                <p>&copy; 2026 Pecan Lakes Estate. All rights reserved. | <a href="#" style="color: rgba(255, 255, 255, 0.8);">Privacy</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Hidden mobile button -->
     <button class="call-button-mobile" id="mobile-call-button" style="display: none;" data-track-click="mobile-fixed-call-button">☎ Call Now</button>
 
     <script>
-        // Configuration
         const PHONE = '+1-580-498-0224';
         const ZILLOW_URL = 'https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/';
 
-        // Track visitor source (from Facebook)
         function initializeTracking() {
             const urlParams = new URLSearchParams(window.location.search);
             const source = urlParams.get('source') || 'direct';
@@ -665,7 +781,6 @@
             sessionStorage.setItem('visitor_source', source);
             if (fbclid) sessionStorage.setItem('fbclid', fbclid);
 
-            // Log view
             const view = {
                 timestamp: new Date().toISOString(),
                 source: source,
@@ -673,10 +788,9 @@
                 url: window.location.href
             };
 
-            console.log('[Pecan Lakes Analytics] Page View:', view);
+            console.log('[Analytics] Page View:', view);
         }
 
-        // Track button clicks
         function setupClickTracking() {
             document.querySelectorAll('[data-track-click]').forEach(el => {
                 el.addEventListener('click', (e) => {
@@ -690,22 +804,19 @@
                         url: window.location.href
                     };
 
-                    console.log('[Pecan Lakes Analytics] Click Event:', event);
+                    console.log('[Analytics] Click Event:', event);
 
-                    // Store click in localStorage for reporting
                     const clicks = JSON.parse(localStorage.getItem('pecan_lakes_clicks') || '[]');
                     clicks.push(event);
-                    localStorage.setItem('pecan_lakes_clicks', JSON.stringify(clicks.slice(-100))); // Keep last 100
+                    localStorage.setItem('pecan_lakes_clicks', JSON.stringify(clicks.slice(-100)));
                 });
             });
         }
 
-        // Setup call buttons
         function setupCallButtons() {
             const callButtons = document.querySelectorAll('[id*="call-now-btn"], .call-button-mobile');
             callButtons.forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    // Track the tap
                     const action = btn.getAttribute('data-track-click') || 'call-button-tap';
                     const source = sessionStorage.getItem('visitor_source') || 'direct';
 
@@ -716,20 +827,17 @@
                         type: 'call-tap'
                     };
 
-                    console.log('[Pecan Lakes Analytics] Call Button Tap:', callTap);
+                    console.log('[Analytics] Call Tap:', callTap);
 
-                    // Store call tap
                     const taps = JSON.parse(localStorage.getItem('pecan_lakes_call_taps') || '[]');
                     taps.push(callTap);
                     localStorage.setItem('pecan_lakes_call_taps', JSON.stringify(taps.slice(-100)));
 
-                    // Initiate call
                     window.location.href = 'tel:' + PHONE.replace(/-/g, '');
                 });
             });
         }
 
-        // Setup listing link
         function setupListingLink() {
             const listingLink = document.querySelector('[data-track-click="footer-zillow-link"]');
             if (listingLink) {
@@ -744,7 +852,6 @@
             });
         }
 
-        // Show mobile button on mobile devices
         function setupMobileButton() {
             const mobileButton = document.getElementById('mobile-call-button');
             if (window.innerWidth <= 768) {
@@ -760,36 +867,37 @@
             });
         }
 
-        // Lazy load images
-        function setupLazyLoading() {
-            if ('IntersectionObserver' in window) {
-                const images = document.querySelectorAll('img[loading="lazy"]');
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.src; // Trigger load
-                            observer.unobserve(img);
-                        }
-                    });
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
                 });
-                images.forEach(img => imageObserver.observe(img));
-            }
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             initializeTracking();
             setupClickTracking();
             setupCallButtons();
             setupListingLink();
             setupMobileButton();
-            setupLazyLoading();
+            setupScrollAnimations();
 
-            console.log('[Pecan Lakes] Page ready. Phone: ' + PHONE);
+            console.log('[Pecan Lakes] Premium site loaded. Phone: ' + PHONE);
         });
 
-        // Export function for manual call log review
         window.getAnalytics = () => {
             return {
                 clicks: JSON.parse(localStorage.getItem('pecan_lakes_clicks') || '[]'),
