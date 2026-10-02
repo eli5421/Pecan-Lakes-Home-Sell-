@@ -872,7 +872,11 @@
             <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; color: #0f3a52; margin-bottom: 12px;">Schedule Your Tour</h2>
             <p style="color: #666; margin-bottom: 32px; font-size: 15px;">Our team will contact you within hours to confirm your private showing.</p>
 
+            <div id="lead-message" role="status" aria-live="polite" style="display: none; margin-bottom: 20px; padding: 16px; border-radius: 8px; font-size: 15px; line-height: 1.5;"></div>
+
             <form id="lead-form" style="display: flex; flex-direction: column; gap: 18px;">
+                <!-- Honeypot (Web3Forms botcheck): must stay empty/hidden -->
+                <input type="checkbox" name="botcheck" id="lead-botcheck" tabindex="-1" autocomplete="off" style="display: none;">
                 <input type="text" id="lead-name" placeholder="Your Full Name" required style="padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit;">
                 <input type="email" id="lead-email" placeholder="Email Address" required style="padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit;">
                 <input type="tel" id="lead-phone" placeholder="Phone Number" required style="padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit;">
@@ -896,18 +900,67 @@
     </div>
 
     <script>
+        // ---- Lead delivery (Web3Forms) ----
+        // Web3Forms free plan = 1 destination email per access key, so every lead is POSTed once per key.
+        // Key 1 -> April Elkouri (aprilelkouri@gmail.com), still a placeholder until she creates/confirms her own; Key 2 (Eli slot) -> created under eli@thechurchlawton.com.
+        // Each key is created by (and its verification email confirmed by) the owner of that address.
+        // Replace each placeholder below and redeploy. Any key still starting with "REPLACE_WITH" is skipped;
+        // if ALL are placeholders NO request is sent and visitors see the "Please call" fallback.
+        const WEB3FORMS_ACCESS_KEYS = [
+            "REPLACE_WITH_KEY_FOR_APRIL", // [0] April Elkouri
+            "adbd192a-b8d9-4c63-b6ab-58f8926da7e8"    // [1] Eli (eli@thechurchlawton.com)
+        ];
+        const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+        const WEB3FORMS_SUBJECT = 'New Pecan Lakes tour request';
+
         const PHONE = '+1-580-498-0224';
+        const PHONE_DISPLAY = '(580) 498-0224';
+        const PHONE_TEL = 'tel:+15804980224';
         const ZILLOW_URL = 'https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/';
 
+        const FIRST_TOUCH_KEY = 'pecan_lakes_first_touch';
+        const ATTRIBUTION_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'source', 'fbclid'];
+
+        // Vercel Analytics custom events (no personal data is ever sent here)
+        function trackEvent(name, data) {
+            try {
+                if (typeof window.va === 'function') window.va('event', { name: name, data: data || {} });
+            } catch (err) { /* analytics must never break the page */ }
+        }
+
+        function safeParse(raw, fallback) {
+            try { return raw ? JSON.parse(raw) : fallback; } catch (err) { return fallback; }
+        }
+
+        // First-touch attribution: captured on first landing, never overwritten afterwards
+        function getFirstTouch() {
+            return safeParse(localStorage.getItem(FIRST_TOUCH_KEY), null);
+        }
+
+        function captureAttribution() {
+            if (getFirstTouch()) return;
+            const params = new URLSearchParams(window.location.search);
+            const touch = { landed_at: new Date().toISOString(), referrer: document.referrer || null, landing_page: window.location.pathname };
+            ATTRIBUTION_PARAMS.forEach(k => { touch[k] = params.get(k) || null; });
+            try { localStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(touch)); } catch (err) { /* storage unavailable */ }
+        }
+
+        function getAttribution() {
+            const touch = getFirstTouch() || {};
+            const out = { referrer: touch.referrer || null };
+            ATTRIBUTION_PARAMS.forEach(k => { out[k] = touch[k] || null; });
+            out.source = touch.source || 'direct';
+            return out;
+        }
+
         function initializeTracking() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const source = urlParams.get('source') || 'direct';
-            const fbclid = urlParams.get('fbclid') || null;
+            captureAttribution();
+            const attribution = getAttribution();
 
-            sessionStorage.setItem('visitor_source', source);
-            if (fbclid) sessionStorage.setItem('fbclid', fbclid);
+            sessionStorage.setItem('visitor_source', attribution.source);
+            if (attribution.fbclid) sessionStorage.setItem('fbclid', attribution.fbclid);
 
-            console.log('[Pecan Lakes] Page loaded. Source:', source);
+            console.log('[Pecan Lakes] Page loaded. Source:', attribution.source);
         }
 
         function setupClickTracking() {
@@ -927,14 +980,61 @@
             });
         }
 
+        // Phone taps, Zillow clicks and video plays -> Vercel Analytics custom events
+        function setupCustomEvents() {
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest && e.target.closest('a[href]');
+                if (!link) return;
+                const href = link.getAttribute('href') || '';
+                const where = link.getAttribute('data-track-click') || (link.closest('#lead-modal') ? 'modal-fallback' : 'link');
+                if (href.indexOf('tel:') === 0) trackEvent('phone_tap', { location: where });
+                else if (href.indexOf('zillow.com') !== -1) trackEvent('zillow_click', { location: where });
+            });
+
+            let videoTracked = false;
+            document.querySelectorAll('video').forEach(video => {
+                video.addEventListener('play', () => {
+                    if (videoTracked) return;
+                    videoTracked = true;
+                    trackEvent('video_play', {});
+                });
+            });
+        }
+
+        function setLeadMessage(kind, html) {
+            const box = document.getElementById('lead-message');
+            if (!html) { box.style.display = 'none'; box.innerHTML = ''; return; }
+            box.style.display = 'block';
+            box.style.background = kind === 'success' ? '#ecfdf5' : '#fff7ed';
+            box.style.color = kind === 'success' ? '#065f46' : '#9a3412';
+            box.style.border = '1px solid ' + (kind === 'success' ? '#a7f3d0' : '#fed7aa');
+            box.innerHTML = html;
+        }
+
+        function callFallbackHtml() {
+            return 'Please call <a href="' + PHONE_TEL + '" style="color: inherit; font-weight: 700; text-decoration: underline;">' + PHONE_DISPLAY + '</a>';
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        function openLeadModal(trigger) {
+            const form = document.getElementById('lead-form');
+            form.style.display = 'flex';
+            setLeadMessage(null, null);
+            document.getElementById('lead-modal').style.display = 'flex';
+            trackEvent('tour_modal_open', { location: trigger });
+        }
+
         function setupCallButtons() {
             const callButtons = document.querySelectorAll('[id*="call-now-btn"]');
             callButtons.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    document.getElementById('lead-modal').style.display = 'flex';
-
                     const action = btn.getAttribute('data-track-click') || 'call-button-tap';
+                    openLeadModal(action);
+
                     const callTap = {
                         timestamp: new Date().toISOString(),
                         action: action,
@@ -949,13 +1049,66 @@
             });
         }
 
+        // POST one lead to one key. Returns true only when Web3Forms confirms success for that key.
+        async function postLeadWithKey(accessKey, lead) {
+            const payload = {
+                access_key: accessKey,
+                subject: WEB3FORMS_SUBJECT,
+                from_name: 'Pecan Lakes Website',
+                botcheck: '',
+                name: lead.name,
+                email: lead.email,
+                phone: lead.phone,
+                interest_type: lead.type,
+                notes: lead.notes,
+                utm_source: lead.utm_source,
+                utm_medium: lead.utm_medium,
+                utm_campaign: lead.utm_campaign,
+                utm_content: lead.utm_content,
+                utm_term: lead.utm_term,
+                source: lead.source,
+                fbclid: lead.fbclid,
+                referrer: lead.referrer,
+                timestamp: lead.timestamp
+            };
+
+            const controller = typeof AbortController === 'function' ? new AbortController() : null;
+            const timer = controller ? setTimeout(() => controller.abort(), 15000) : null;
+            try {
+                const res = await fetch(WEB3FORMS_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(payload),
+                    signal: controller ? controller.signal : undefined
+                });
+                const data = await res.json().catch(() => null);
+                return !!(res.ok && data && data.success === true);
+            } catch (err) {
+                return false;
+            } finally {
+                if (timer) clearTimeout(timer);
+            }
+        }
+
+        // Sends the lead to every real key. True if AT LEAST ONE delivery succeeded.
+        async function sendToWeb3Forms(lead) {
+            const realKeys = WEB3FORMS_ACCESS_KEYS.filter(k => typeof k === 'string' && k && k.indexOf('REPLACE_WITH') !== 0);
+            if (realKeys.length === 0) return false; // all placeholders: never POST
+            const results = await Promise.allSettled(realKeys.map(k => postLeadWithKey(k, lead)));
+            return results.some(r => r.status === 'fulfilled' && r.value === true);
+        }
+
         function setupLeadForm() {
             const form = document.getElementById('lead-form');
-            const modal = document.getElementById('lead-modal');
+            const submitBtn = form.querySelector('button[type="submit"]');
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
+                // Honeypot: real visitors never see/tick this box
+                if (document.getElementById('lead-botcheck').checked) return;
+
+                const attribution = getAttribution();
                 const lead = {
                     id: Date.now(),
                     timestamp: new Date().toISOString(),
@@ -964,28 +1117,43 @@
                     phone: document.getElementById('lead-phone').value,
                     type: document.getElementById('lead-type').value,
                     notes: document.getElementById('lead-notes').value,
-                    source: sessionStorage.getItem('visitor_source') || 'direct',
-                    fbclid: sessionStorage.getItem('fbclid') || null,
-                    utm_source: new URLSearchParams(window.location.search).get('utm_source') || null,
-                    utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || null,
-                    utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || null,
+                    source: attribution.source,
+                    fbclid: attribution.fbclid,
+                    utm_source: attribution.utm_source,
+                    utm_medium: attribution.utm_medium,
+                    utm_campaign: attribution.utm_campaign,
+                    utm_content: attribution.utm_content,
+                    utm_term: attribution.utm_term,
+                    referrer: attribution.referrer,
                     status: 'new'
                 };
 
-                // Save to localStorage
+                // Keep the local backup copy
                 const leads = JSON.parse(localStorage.getItem('pecan_lakes_leads') || '[]');
                 leads.push(lead);
                 localStorage.setItem('pecan_lakes_leads', JSON.stringify(leads));
 
-                // Send to Google Form (backup)
-                await sendToGoogleForm(lead).catch(() => {});
+                const originalLabel = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                let delivered = false;
+                try {
+                    delivered = await sendToWeb3Forms(lead);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalLabel;
+                }
 
-                // Show confirmation
-                alert('Thank you! We\'ll contact you shortly at ' + lead.phone);
+                if (!delivered) {
+                    // Not delivered: never claim success. Offer the phone instead.
+                    setLeadMessage('error', callFallbackHtml());
+                    return;
+                }
 
-                // Reset and close
+                setLeadMessage('success', 'Thank you! We\'ll contact you shortly at ' + escapeHtml(lead.phone));
                 form.reset();
-                modal.style.display = 'none';
+                form.style.display = 'none';
+                trackEvent('tour_form_submit_success', { type: lead.type, source: lead.source });
 
                 // Track lead submission
                 const submission = {
@@ -998,19 +1166,6 @@
                 submissions.push(submission);
                 localStorage.setItem('pecan_lakes_submissions', JSON.stringify(submissions.slice(-100)));
             });
-        }
-
-        async function sendToGoogleForm(lead) {
-            // This is a backup integration for Google Forms
-            // Format: form entries correspond to form field IDs
-            const formData = new FormData();
-            formData.append('entry.123456789', lead.name);
-            formData.append('entry.987654321', lead.email);
-            formData.append('entry.555666777', lead.phone);
-            formData.append('entry.444555666', lead.source);
-
-            // Optional: send to a Google Form endpoint if available
-            // For now, this is reserved for when user sets up the Form
         }
 
         function setupListingLink() {
@@ -1047,6 +1202,7 @@
             initializeTracking();
             setupClickTracking();
             setupCallButtons();
+            setupCustomEvents();
             setupLeadForm();
             setupListingLink();
             setupMobileButton();
