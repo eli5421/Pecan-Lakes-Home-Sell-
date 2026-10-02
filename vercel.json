@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "public": true,
   "buildCommand": "echo 'Static site, no build needed'",
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!_vercel/).*)", "destination": "/index.html" }
   ]
 }
