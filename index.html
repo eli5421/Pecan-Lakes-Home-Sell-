@@ -185,10 +185,10 @@
             opacity: 0;
             pointer-events: none;
             z-index: 1;
-            animation: rise linear infinite;
+            animation: speckRise linear infinite;
         }
 
-        @keyframes rise {
+        @keyframes speckRise {
             0% { transform: translate3d(0, 0, 0); opacity: 0; }
             15% { opacity: 0.7; }
             85% { opacity: 0.5; }
@@ -795,6 +795,29 @@
 
         @media (max-width: 640px) {
             .scroll-cta { right: 12px; left: 12px; width: auto; bottom: 76px; }
+        }
+
+        /* Light confetti: a sparse, slow drift that keeps falling gently */
+        .confetti {
+            position: fixed;
+            inset: 0;
+            z-index: 950;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti i {
+            position: absolute;
+            top: -20px;
+            width: 5px;
+            height: 8px;
+            border-radius: 1px;
+            opacity: 0.4;
+            animation: confettiFall linear infinite;
+        }
+
+        @keyframes confettiFall {
+            to { transform: translate3d(var(--dx), 110vh, 0) rotate(var(--rot)); }
         }
 
         /* ===== RESPONSIVE ===== */
