@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pecan Lakes | Award-Winning Waterfront Estate</title>
+    <title>Pecan Lakes | Waterfront Estate in Lawton, OK</title>
+    <link rel="canonical" href="https://pecan-lakes-website.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Pecan Lakes">
+    <meta property="og:title" content="Pecan Lakes | Waterfront Estate in Lawton, OK">
+    <meta property="og:description" content="4 bedrooms, 2.5 baths, about 3,000 square feet on the water. $675,000. 12401 SW Pecan Lakes Circle, Lawton, OK.">
+    <meta property="og:url" content="https://pecan-lakes-website.vercel.app/">
+    <meta property="og:image" content="https://pecan-lakes-website.vercel.app/assets/images/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description" content="Exceptional 4-bed luxury waterfront home. Premium finishes, stunning water views, sophisticated entertaining spaces. $675,000. Pecan Lakes community, Lawton, OK.">
     <meta name="theme-color" content="#050607">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -390,6 +398,12 @@
             overflow: hidden;
         }
 
+        .video-portrait {
+            aspect-ratio: 9 / 16;
+            max-width: 360px;
+            margin: 48px auto 0;
+        }
+
         .video-frame video {
             position: absolute;
             inset: 0;
@@ -592,7 +606,7 @@
             .section-head, .about-body, .listing-grid { grid-template-columns: 1fr; gap: 24px; }
             .about-col { grid-column: 1; }
             .section-head { margin-bottom: 56px; }
-            .header-link { display: none; }
+            .header-link:not([href^="tel:"]) { display: none; }
             .footer-content { grid-template-columns: 1fr; }
         }
 
@@ -626,7 +640,7 @@
             <div class="logo">Pecan Lakes</div>
             <div class="header-actions">
                 <a href="https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/" target="_blank" rel="noopener" class="header-link" data-track-click="header-listing-link">Official Zillow listing</a>
-                <div class="cta-badge">Limited showings</div>
+                <a href="tel:+15807046296" class="header-link" data-track-click="header-call-link">(580) 704-6296</a>
             </div>
         </div>
     </header>
@@ -642,7 +656,7 @@
             <div class="hero-side">
                 <div class="price">$675,000</div>
                 <div class="address">12401 SW Pecan Lakes Circle, Lawton, OK 73505</div>
-                <span class="urgency-tag">Multiple interest &middot; Schedule today</span>
+                <span class="urgency-tag">Private showings by appointment</span>
             </div>
         </div>
         <div class="spec-strip">
@@ -701,6 +715,11 @@
             <figure class="gallery-item"><img src="assets/images/great-room.jpg" alt="Sophisticated great room" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/game-room.jpg" alt="Entertainment game room" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/aerial-sunset.jpg" alt="Stunning aerial sunset" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/aerial-home.jpg" alt="Aerial view of the home beside the pond" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/covered-patio.jpg" alt="Covered brick patio with outdoor fireplace at sunset" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/breakfast-nook.jpg" alt="Breakfast nook overlooking the lake" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/living-fireplace.jpg" alt="Living room with built-in shelving and fireplace" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/primary-bath.jpg" alt="Primary bath with glass shower and soaking tub" loading="lazy"></figure>
         </div>
     </section>
 
@@ -716,6 +735,12 @@
                     Your browser does not support the video tag.
                 </video>
             </div>
+            <div class="video-frame video-portrait">
+                <video controls poster="assets/images/covered-patio.jpg" preload="metadata">
+                    <source src="assets/video/walkthrough-vertical.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </section>
 
@@ -724,7 +749,7 @@
             <div class="listing-grid">
                 <h2>Ready to experience this exceptional estate?</h2>
                 <div class="listing-copy">
-                    <p>Schedule your private showing today. This premium waterfront property won't remain available long.</p>
+                    <p>Schedule a private showing of this waterfront home. Tours are arranged by appointment.</p>
                     <button class="call-button" id="call-now-btn-2" data-track-click="listing-section-call-button">Schedule your showing</button>
                     <a href="https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/" target="_blank" rel="noopener" class="listing-link" data-track-click="footer-zillow-link">View the full listing on Zillow</a>
                 </div>
@@ -761,7 +786,7 @@
     <div id="lead-modal" class="modal" style="display: none;">
         <div class="modal-card">
             <h2>Schedule your tour</h2>
-            <p class="modal-lead">Our team will contact you within hours to confirm your private showing.</p>
+            <p class="modal-lead">Share your details and we will contact you to arrange a private showing.</p>
 
             <div id="lead-message" role="status" aria-live="polite" style="display: none; margin-bottom: 20px; padding: 16px; border-radius: 2px; font-size: 15px; line-height: 1.5;"></div>
 
@@ -778,6 +803,16 @@
                         <option value="showing">Schedule a private showing</option>
                         <option value="inquiry">General information</option>
                         <option value="offer">Interested in making an offer</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="modal-label" for="lead-financing">How will you finance the purchase?</label>
+                    <select id="lead-financing" class="field" required>
+                        <option value="">Select one</option>
+                        <option value="Pre-approved">Pre-approved for a mortgage</option>
+                        <option value="Cash">Cash buyer</option>
+                        <option value="Not yet pre-approved">Not yet pre-approved</option>
                     </select>
                 </div>
 
@@ -951,6 +986,7 @@
                 email: lead.email,
                 phone: lead.phone,
                 interest_type: lead.type,
+                financing: lead.financing,
                 notes: lead.notes,
                 utm_source: lead.utm_source,
                 utm_medium: lead.utm_medium,
@@ -1007,6 +1043,7 @@
                     email: document.getElementById('lead-email').value,
                     phone: document.getElementById('lead-phone').value,
                     type: document.getElementById('lead-type').value,
+                    financing: document.getElementById('lead-financing').value,
                     notes: document.getElementById('lead-notes').value,
                     source: attribution.source,
                     fbclid: attribution.fbclid,
