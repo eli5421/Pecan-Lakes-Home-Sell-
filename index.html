@@ -143,7 +143,7 @@
             inset: 0;
             background: url('assets/images/hero.jpg') 60% center / cover no-repeat;
             transform: scale(1.06);
-            animation: settle 2.6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+            animation: settle 2.6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards, drift 26s ease-in-out 2.6s infinite alternate;
         }
 
         .hero::after {
@@ -157,6 +157,12 @@
 
         @keyframes settle {
             to { transform: scale(1); }
+        }
+
+        /* Slow, continuous camera drift over the home */
+        @keyframes drift {
+            from { transform: scale(1) translate3d(0, 0, 0); }
+            to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
         }
 
         .hero-main {
@@ -1028,6 +1034,17 @@
                 layer.appendChild(bit);
             }
             document.body.appendChild(layer);
+        })();
+
+        // Lead popup opens over the hero shortly after load, once per visit.
+        (function () {
+            var opened = false;
+            try { opened = sessionStorage.getItem('pecan_popup_opened') === '1'; } catch (e) {}
+            if (opened) return;
+            setTimeout(function () {
+                document.getElementById('lead-modal').style.display = 'flex';
+                try { sessionStorage.setItem('pecan_popup_opened', '1'); } catch (e) {}
+            }, 3500);
         })();
 
         // Compact CTA: rises in the bottom-right once the visitor scrolls past the hero.
