@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pecan Lakes | Award-Winning Waterfront Estate</title>
     <meta name="description" content="Exceptional 4-bed luxury waterfront home. Premium finishes, stunning water views, sophisticated entertaining spaces. $675,000. Pecan Lakes community, Lawton, OK.">
-    <meta name="theme-color" content="#0c2b3e">
+    <meta name="theme-color" content="#050607">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #0c2b3e;
-            --navy-deep: #081e2c;
-            --ink: #1d2b36;
-            --muted: #5d6b75;
-            --gold: #b08a4e;
-            --gold-soft: #e8d4ae;
-            --gold-dark: #8c6a35;
-            --ivory: #faf8f4;
-            --white: #ffffff;
-            --line: rgba(12, 43, 62, 0.12);
-            --radius: 6px;
+            --void: #050607;
+            --graphite: #0c0f12;
+            --steel: #161b20;
+            --bone: #ece8df;
+            --mist: #9aa3ab;
+            --champagne: #d2b57a;
+            --champagne-deep: #a88a52;
+            --hairline: rgba(236, 232, 223, 0.14);
+            --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+            --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,196 +28,231 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-family: var(--sans);
             font-size: 16px;
-            line-height: 1.7;
-            color: var(--ink);
-            background: var(--ivory);
+            line-height: 1.65;
+            color: var(--bone);
+            background: var(--void);
             -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-weight: 500;
-            color: var(--navy);
-            letter-spacing: -0.01em;
-            line-height: 1.1;
+            font-family: var(--serif);
+            font-weight: 300;
+            line-height: 1.04;
+            letter-spacing: -0.015em;
+            color: var(--bone);
         }
 
-        .container {
-            max-width: 1200px;
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+            outline: 1px solid var(--champagne);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 28px;
+            padding: 0 32px;
         }
 
-        .eyebrow {
+        .label {
             font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            color: var(--gold-dark);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--mist);
         }
 
         /* ===== HEADER ===== */
         header {
-            position: sticky;
+            position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
-            background: rgba(250, 248, 244, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--line);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 16px 28px;
+            padding: 28px 32px;
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 24px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--navy);
+            color: var(--bone);
         }
 
         .header-actions {
             display: flex;
-            gap: 28px;
             align-items: center;
+            gap: 32px;
         }
 
         .header-link {
-            color: var(--navy);
+            font-size: 13px;
+            color: var(--bone);
             text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            padding: 6px 0;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--hairline);
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
 
-        .header-link:hover { border-color: var(--gold); }
+        .header-link:hover {
+            color: var(--champagne);
+            border-color: var(--champagne);
+        }
 
         .cta-badge {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--gold-dark);
-            border: 1px solid var(--gold);
-            border-radius: 999px;
-            padding: 8px 16px;
+            font-size: 12px;
+            color: var(--champagne);
+            padding: 8px 14px;
+            border: 1px solid rgba(210, 181, 122, 0.45);
+            border-radius: 2px;
         }
 
         /* ===== HERO ===== */
         .hero {
             position: relative;
-            min-height: 88vh;
+            min-height: 100vh;
+            min-height: 100svh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-end;
             overflow: hidden;
-            background: var(--navy);
-            color: var(--white);
-            text-align: center;
+            background: var(--void);
         }
 
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url('assets/images/hero.jpg') center / cover no-repeat;
-            animation: zoomInSlow 25s ease-out forwards;
+            background: url('assets/images/hero.jpg') 60% center / cover no-repeat;
+            transform: scale(1.06);
+            animation: settle 2.6s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
         }
 
         .hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(12, 43, 62, 0.35) 0%, rgba(12, 43, 62, 0.55) 55%, rgba(8, 30, 44, 0.92) 100%);
+            background:
+                linear-gradient(to top, var(--void) 0%, rgba(5, 6, 7, 0.55) 40%, rgba(5, 6, 7, 0.1) 75%),
+                linear-gradient(to right, rgba(5, 6, 7, 0.7) 0%, rgba(5, 6, 7, 0) 60%);
         }
 
-        @keyframes zoomInSlow {
-            from { transform: scale(1.08); }
+        @keyframes settle {
             to { transform: scale(1); }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(32px); }
+        .hero-main {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 40px;
+            padding: 0 32px 56px;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-copy {
+            max-width: 720px;
+            animation: rise 1.6s cubic-bezier(0.2, 0.6, 0.2, 1) 0.3s both;
+        }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(18px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 880px;
-            padding: 96px 28px;
-            animation: fadeInUp 1.4s ease-out 0.2s both;
-        }
-
-        .hero .eyebrow { color: var(--gold-soft); }
-
         .hero h1 {
-            color: var(--white);
-            font-size: clamp(46px, 7vw, 84px);
-            font-weight: 400;
-            line-height: 1.02;
-            margin: 20px 0 22px;
+            font-size: clamp(56px, 8.5vw, 124px);
+            font-weight: 300;
+            line-height: 0.95;
+            margin: 22px 0 26px;
         }
 
         .hero-subtitle {
-            max-width: 560px;
-            margin: 0 auto 30px;
-            font-size: clamp(16px, 2vw, 19px);
+            font-size: clamp(16px, 1.6vw, 19px);
             font-weight: 300;
-            opacity: 0.92;
-        }
-
-        .hero .address {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
+            color: var(--bone);
             opacity: 0.85;
-            margin-bottom: 36px;
+            max-width: 480px;
         }
 
-        .price-badge {
-            display: inline-block;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 44px;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            padding: 8px 44px;
-            border-top: 1px solid rgba(255, 255, 255, 0.35);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+        .hero-side {
+            text-align: right;
+            animation: rise 1.6s cubic-bezier(0.2, 0.6, 0.2, 1) 0.5s both;
         }
 
-        .price-badge { color: var(--white); }
+        .price {
+            font-family: var(--serif);
+            font-size: clamp(44px, 5vw, 68px);
+            font-weight: 400;
+            line-height: 1;
+            color: var(--champagne);
+            font-variant-numeric: lining-nums;
+        }
+
+        .address {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--mist);
+        }
 
         .urgency-tag {
             display: block;
-            margin: 22px 0 36px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: var(--gold-soft);
-            animation: pulse 3s ease-in-out infinite;
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--mist);
+        }
+
+        /* Telemetry readout along the base of the hero */
+        .spec-strip {
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid var(--hairline);
+            background: rgba(5, 6, 7, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .spec {
+            padding: 26px 32px;
+            border-left: 1px solid var(--hairline);
+        }
+
+        .spec:first-child { border-left: none; }
+
+        .spec-value {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--bone);
+            font-variant-numeric: lining-nums tabular-nums;
+        }
+
+        .spec-label {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--mist);
         }
 
         /* ===== BUTTONS ===== */
@@ -226,31 +260,23 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: var(--gold);
-            color: var(--white);
+            margin-top: 40px;
+            padding: 18px 40px;
+            background: var(--champagne);
+            color: var(--void);
             text-decoration: none;
-            padding: 18px 44px;
             border: none;
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+            border-radius: 2px;
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
             cursor: pointer;
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.25);
-            transition: background 0.3s ease, transform 0.3s ease;
+            transition: background 0.3s ease;
         }
 
-        .call-button:hover {
-            background: #c29b60;
-            transform: translateY(-2px);
-        }
+        .call-button:hover { background: #e0c68e; }
 
-        .call-button:active { transform: translateY(0); }
-
-        /* ===== MOBILE CALL BUTTON ===== */
         .call-button-mobile {
             position: fixed;
             bottom: 0;
@@ -261,138 +287,87 @@
             align-items: center;
             justify-content: center;
             padding: 18px;
-            background: var(--navy);
-            color: var(--white);
+            background: var(--champagne);
+            color: var(--void);
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .call-button-mobile:active { background: var(--navy-deep); }
-
-        /* ===== HIGHLIGHTS ===== */
-        .highlights-section {
-            background: var(--white);
-            padding: 96px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .highlight-card {
-            text-align: center;
-            padding: 8px 16px;
-            border-left: 1px solid var(--line);
-        }
-
-        .highlight-card:first-child { border-left: none; }
-
-        .highlight-number {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 58px;
+            font-size: 14px;
             font-weight: 500;
-            line-height: 1;
-            color: var(--navy);
         }
 
-        .highlight-label {
-            margin-top: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--muted);
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 140px 0;
+            border-top: 1px solid var(--hairline);
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(40px, 4.6vw, 64px);
         }
 
         /* ===== ABOUT ===== */
-        .about-section {
-            background: var(--ivory);
-            padding: 110px 0;
-            border-bottom: 1px solid var(--line);
+        .about-body {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
         }
 
-        .about-content { max-width: 820px; margin: 0 auto; }
-
-        .about-section h2 {
-            font-size: clamp(38px, 5vw, 56px);
-            margin-bottom: 28px;
-        }
-
-        .about-section p {
-            font-size: 17px;
+        .about-lede {
+            font-family: var(--serif);
+            font-size: clamp(24px, 2.6vw, 34px);
+            line-height: 1.3;
+            color: var(--bone);
             font-weight: 300;
-            line-height: 1.85;
-            color: var(--muted);
-            margin-bottom: 24px;
         }
 
-        .about-section h3 {
-            font-size: 30px;
-            margin: 56px 0 8px;
+        .about-body h3 {
+            font-size: 22px;
+            font-weight: 400;
+            margin: 0 0 24px;
+            color: var(--champagne);
         }
 
-        .about-section ul {
+        .about-col { grid-column: 2; }
+
+        .about-col ul {
             list-style: none;
-            border-top: 1px solid var(--line);
+            border-top: 1px solid var(--hairline);
         }
 
-        .about-section li {
-            position: relative;
-            padding: 18px 0 18px 40px;
-            border-bottom: 1px solid var(--line);
-            font-size: 16px;
-            font-weight: 300;
-            line-height: 1.8;
-            color: var(--muted);
+        .about-col li {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--hairline);
+            font-size: 15px;
+            color: var(--mist);
         }
 
-        .about-section li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 16px;
-            height: 1px;
-            background: var(--gold);
-        }
-
-        .about-section strong {
-            color: var(--navy);
-            font-weight: 600;
+        .about-col li strong {
+            font-weight: 500;
+            color: var(--bone);
         }
 
         /* ===== GALLERY ===== */
-        .gallery-section {
-            background: var(--white);
-            padding: 110px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .gallery-section h2,
-        .video-section h2 {
-            font-size: clamp(38px, 5vw, 56px);
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--void);
         }
 
         .gallery-item {
+            position: relative;
             aspect-ratio: 4 / 3;
-            border-radius: var(--radius);
             overflow: hidden;
-            background: #e6e9ec;
-            box-shadow: 0 10px 30px rgba(12, 43, 62, 0.1);
+            background: var(--steel);
         }
 
         .gallery-item img {
@@ -400,116 +375,114 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+            filter: saturate(0.9) contrast(1.02);
+            transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1);
         }
 
-        .gallery-item:hover img { transform: scale(1.04); }
+        .gallery-item:hover img { transform: scale(1.03); }
 
         /* ===== VIDEO ===== */
-        .video-section {
-            background: var(--ivory);
-            padding: 110px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .video-container {
+        .video-frame {
             position: relative;
             width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
-            padding-bottom: 56.25%;
-            height: 0;
+            aspect-ratio: 16 / 9;
+            background: var(--steel);
             overflow: hidden;
-            border-radius: var(--radius);
-            box-shadow: 0 20px 60px rgba(12, 43, 62, 0.18);
         }
 
-        .video-container video {
+        .video-frame video {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
         /* ===== LISTING CTA ===== */
         .listing-section {
-            background: var(--navy);
-            color: var(--white);
-            padding: 120px 0;
-            text-align: center;
+            padding: 160px 0;
+            text-align: left;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: end;
         }
 
         .listing-section h2 {
-            color: var(--white);
-            font-size: clamp(38px, 5vw, 56px);
-            margin-bottom: 20px;
+            font-size: clamp(44px, 5vw, 76px);
         }
 
-        .listing-section p {
-            max-width: 560px;
-            margin: 0 auto 40px;
+        .listing-copy p {
+            margin-top: 24px;
+            max-width: 440px;
             font-size: 17px;
+            color: var(--mist);
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.82);
         }
+
+        .listing-copy .call-button { margin-top: 36px; }
 
         .listing-link {
             display: inline-block;
-            color: var(--white);
+            margin-top: 36px;
+            margin-left: 24px;
+            font-size: 14px;
+            color: var(--bone);
             text-decoration: none;
-            padding: 16px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: var(--radius);
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            transition: background 0.3s ease, color 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--hairline);
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
 
         .listing-link:hover {
-            background: var(--white);
-            color: var(--navy);
+            color: var(--champagne);
+            border-color: var(--champagne);
         }
 
         /* ===== FOOTER ===== */
         footer {
-            background: var(--navy-deep);
-            color: rgba(255, 255, 255, 0.72);
-            padding: 84px 0 36px;
+            padding: 96px 0 40px;
+            border-top: 1px solid var(--hairline);
+            background: var(--graphite);
             font-size: 14px;
-            line-height: 1.8;
+            color: var(--mist);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 56px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-bottom: 72px;
         }
 
         .footer-section h3 {
             font-size: 22px;
-            font-weight: 500;
-            color: var(--gold-soft);
-            margin-bottom: 20px;
+            font-weight: 400;
+            color: var(--champagne);
+            margin-bottom: 18px;
         }
+
+        .footer-section p { line-height: 1.8; }
 
         .footer-section a {
-            color: var(--white);
+            color: var(--bone);
             text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
+            border-bottom: 1px solid var(--hairline);
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
 
-        .footer-section a:hover { border-color: var(--gold-soft); }
+        .footer-section a:hover {
+            color: var(--champagne);
+            border-color: var(--champagne);
+        }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 32px;
-            text-align: center;
+            padding-top: 28px;
+            border-top: 1px solid var(--hairline);
             font-size: 13px;
-            opacity: 0.7;
         }
 
         /* ===== LEAD MODAL ===== */
@@ -520,9 +493,9 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            background: rgba(8, 30, 44, 0.6);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            background: rgba(5, 6, 7, 0.78);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
 
         .modal-card {
@@ -531,32 +504,32 @@
             max-width: 520px;
             max-height: 90vh;
             overflow-y: auto;
-            background: var(--white);
-            border-radius: 10px;
-            padding: 52px 48px;
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+            background: var(--graphite);
+            border: 1px solid var(--hairline);
+            border-radius: 2px;
+            padding: 48px;
         }
 
         .modal-card h2 {
-            font-size: 40px;
-            margin-bottom: 10px;
+            font-size: 44px;
+            margin-bottom: 12px;
         }
 
         .modal-lead {
-            color: var(--muted);
+            color: var(--mist);
             font-size: 15px;
             margin-bottom: 28px;
         }
 
         .modal-close {
             position: absolute;
-            top: 16px;
-            right: 20px;
+            top: 14px;
+            right: 18px;
             background: none;
             border: none;
-            font-size: 30px;
+            font-size: 28px;
             line-height: 1;
-            color: #8a969e;
+            color: var(--mist);
             cursor: pointer;
         }
 
@@ -569,86 +542,79 @@
         .modal-label {
             display: block;
             margin-bottom: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--navy);
+            font-size: 13px;
+            color: var(--mist);
         }
 
         .field {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: var(--ivory);
-            color: var(--ink);
+            background: var(--void);
+            color: var(--bone);
+            border: 1px solid var(--hairline);
+            border-radius: 2px;
             font-family: inherit;
             font-size: 15px;
             transition: border-color 0.3s ease;
         }
 
+        .field::placeholder { color: rgba(154, 163, 171, 0.7); }
+
         .field:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: var(--champagne);
         }
 
         textarea.field { resize: vertical; min-height: 88px; }
 
         .modal-submit {
-            background: var(--navy);
-            color: var(--white);
             padding: 16px;
+            background: var(--champagne);
+            color: var(--void);
             border: none;
-            border-radius: var(--radius);
+            border-radius: 2px;
             font-family: inherit;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
-        .modal-submit:hover { background: var(--navy-deep); }
+        .modal-submit:hover { background: #e0c68e; }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .highlights-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
-            .highlight-card:nth-child(odd) { border-left: none; }
+        @media (max-width: 960px) {
+            .hero-main { grid-template-columns: 1fr; padding-bottom: 40px; }
+            .hero-side { text-align: left; }
+            .spec-grid { grid-template-columns: repeat(2, 1fr); }
+            .spec:nth-child(3) { border-left: none; }
+            .spec:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+            .section-head, .about-body, .listing-grid { grid-template-columns: 1fr; gap: 24px; }
+            .about-col { grid-column: 1; }
+            .section-head { margin-bottom: 56px; }
             .header-link { display: none; }
+            .footer-content { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 600px) {
-            .container, .header-content { padding-left: 16px; padding-right: 16px; }
-            .header-content { padding-top: 14px; padding-bottom: 14px; }
-            .logo { font-size: 20px; letter-spacing: 0.14em; }
+        @media (max-width: 640px) {
+            section { padding: 96px 0; }
+            .wrap, .header-content, .hero-main { padding-left: 20px; padding-right: 20px; }
+            .header-content { padding-top: 22px; padding-bottom: 22px; }
+            .logo { font-size: 18px; }
             .cta-badge { display: none; }
-            .hero-content { padding: 72px 16px; }
-            .price-badge { font-size: 36px; padding: 8px 28px; }
-            .highlight-number { font-size: 46px; }
-            .highlights-section, .about-section, .gallery-section, .video-section, .listing-section { padding: 72px 0; }
+            .hero-main { padding-bottom: 32px; }
             .gallery-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr; gap: 36px; }
-            .modal-card { padding: 36px 24px; }
-            body { padding-bottom: 72px; }
-        }
-
-        /* ===== SCROLL ANIMATIONS ===== */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.9s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
-        }
-
-        .scroll-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .about-col li { grid-template-columns: 1fr; gap: 6px; }
+            .listing-link { margin-left: 0; display: block; margin-top: 20px; }
+            .modal-card { padding: 32px 24px; }
+            .spec { padding: 20px; }
+            .spec-value { font-size: 28px; }
+            body { padding-bottom: 64px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
-            .scroll-animate { opacity: 1; transform: none; }
+            html { scroll-behavior: auto; }
         }
     </style>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -659,104 +625,93 @@
         <div class="header-content">
             <div class="logo">Pecan Lakes</div>
             <div class="header-actions">
-                <a href="https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/" target="_blank" rel="noopener" class="header-link" data-track-click="header-listing-link">Official Zillow Listing</a>
-                <div class="cta-badge">Limited Showings</div>
+                <a href="https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/" target="_blank" rel="noopener" class="header-link" data-track-click="header-listing-link">Official Zillow listing</a>
+                <div class="cta-badge">Limited showings</div>
             </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <div class="eyebrow">Lawton, Oklahoma &middot; Waterfront Estate</div>
-            <h1>Extraordinary Waterfront Living</h1>
-            <p class="hero-subtitle">A sanctuary where natural beauty meets sophisticated design</p>
-            <div class="address">12401 SW Pecan Lakes Circle, Lawton, Oklahoma 73505</div>
-            <div class="price-badge">$675,000</div>
-            <span class="urgency-tag">Multiple Interest &middot; Schedule Today</span>
-            <button class="call-button" id="call-now-btn" data-track-click="hero-call-button">Schedule Private Showing</button>
+    <section class="hero" style="border-top: none; padding: 0;">
+        <div class="hero-main">
+            <div class="hero-copy">
+                <div class="label">Lawton, Oklahoma &middot; Waterfront estate</div>
+                <h1>Extraordinary Waterfront Living</h1>
+                <p class="hero-subtitle">A sanctuary where natural beauty meets sophisticated design</p>
+                <button class="call-button" id="call-now-btn" data-track-click="hero-call-button">Schedule private showing</button>
+            </div>
+            <div class="hero-side">
+                <div class="price">$675,000</div>
+                <div class="address">12401 SW Pecan Lakes Circle, Lawton, OK 73505</div>
+                <span class="urgency-tag">Multiple interest &middot; Schedule today</span>
+            </div>
         </div>
-    </section>
-
-    <section class="highlights-section">
-        <div class="container">
-            <div class="highlights-grid">
-                <div class="highlight-card scroll-animate">
-                    <div class="highlight-number">4</div>
-                    <div class="highlight-label">Bedrooms</div>
+        <div class="spec-strip">
+            <div class="spec-grid">
+                <div class="spec">
+                    <div class="spec-value">4</div>
+                    <div class="spec-label">Bedrooms</div>
                 </div>
-                <div class="highlight-card scroll-animate">
-                    <div class="highlight-number">2.5</div>
-                    <div class="highlight-label">Bathrooms</div>
+                <div class="spec">
+                    <div class="spec-value">2.5</div>
+                    <div class="spec-label">Bathrooms</div>
                 </div>
-                <div class="highlight-card scroll-animate">
-                    <div class="highlight-number">~3K</div>
-                    <div class="highlight-label">Square Feet</div>
+                <div class="spec">
+                    <div class="spec-value">~3,000</div>
+                    <div class="spec-label">Square feet</div>
                 </div>
-                <div class="highlight-card scroll-animate">
-                    <div class="highlight-number">Premium</div>
-                    <div class="highlight-label">Waterfront Setting</div>
+                <div class="spec">
+                    <div class="spec-value">Waterfront</div>
+                    <div class="spec-label">Premium finishes throughout</div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="about-section">
-        <div class="container">
-            <div class="about-content scroll-animate">
-                <h2>A Home for Life's Finest Moments</h2>
-                <p>This exceptional waterfront property represents a rare opportunity to own a luxury residence in one of Lawton's most prestigious communities. Every detail has been thoughtfully designed for those who appreciate sophisticated living.</p>
-
-                <h3>Why This Property Stands Out</h3>
-                <ul>
-                    <li><strong>Breathtaking Water Views</strong> &mdash; Serene vistas from multiple living spaces, ideal for peaceful mornings and entertaining evenings</li>
-                    <li><strong>Open Living Architecture</strong> &mdash; Seamlessly flowing spaces designed for family connection and sophisticated entertaining</li>
-                    <li><strong>Premium Kitchen</strong> &mdash; Modern finishes and intuitive layout perfect for culinary experiences</li>
-                    <li><strong>Primary Suite Sanctuary</strong> &mdash; A luxurious retreat designed with ultimate comfort and privacy in mind</li>
-                    <li><strong>Entertainment Hub</strong> &mdash; Dedicated game room and outdoor entertaining spaces for creating lasting memories</li>
-                    <li><strong>Professional Landscaping</strong> &mdash; Mature trees and manicured grounds enhance the serene waterfront setting</li>
-                    <li><strong>Prestigious Address</strong> &mdash; Pecan Lakes community offers unmatched privacy, beauty, and proximity to quality amenities</li>
-                </ul>
+        <div class="wrap">
+            <div class="section-head">
+                <div class="label">The residence</div>
+                <h2>A home for life's finest moments</h2>
+            </div>
+            <div class="about-body">
+                <p class="about-lede">This exceptional waterfront property represents a rare opportunity to own a luxury residence in one of Lawton's most prestigious communities. Every detail has been thoughtfully designed for those who appreciate sophisticated living.</p>
+                <div class="about-col">
+                    <h3>Why this property stands out</h3>
+                    <ul>
+                        <li><strong>Breathtaking water views</strong><span>Serene vistas from multiple living spaces, ideal for peaceful mornings and entertaining evenings</span></li>
+                        <li><strong>Open living architecture</strong><span>Seamlessly flowing spaces designed for family connection and sophisticated entertaining</span></li>
+                        <li><strong>Premium kitchen</strong><span>Modern finishes and intuitive layout perfect for culinary experiences</span></li>
+                        <li><strong>Primary suite sanctuary</strong><span>A luxurious retreat designed with ultimate comfort and privacy in mind</span></li>
+                        <li><strong>Entertainment hub</strong><span>Dedicated game room and outdoor entertaining spaces for creating lasting memories</span></li>
+                        <li><strong>Professional landscaping</strong><span>Mature trees and manicured grounds enhance the serene waterfront setting</span></li>
+                        <li><strong>Prestigious address</strong><span>Pecan Lakes community offers unmatched privacy, beauty, and proximity to quality amenities</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="gallery-section">
-        <div class="container">
-            <h2>Visual Journey</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/hero.jpg" alt="Twilight exterior elegance" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/aerial-pond.jpg" alt="Aerial waterfront view" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/outdoor-kitchen.jpg" alt="Premium outdoor kitchen and patio" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/primary-bedroom.jpg" alt="Luxurious primary suite" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/kitchen.jpg" alt="Modern gourmet kitchen" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/great-room.jpg" alt="Sophisticated great room" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/game-room.jpg" alt="Entertainment game room" loading="lazy">
-                </div>
-                <div class="gallery-item scroll-animate">
-                    <img src="assets/images/aerial-sunset.jpg" alt="Stunning aerial sunset" loading="lazy">
-                </div>
-            </div>
+    <section class="gallery-section" style="padding: 0;">
+        <div class="gallery-grid">
+            <figure class="gallery-item"><img src="assets/images/hero.jpg" alt="Twilight exterior elegance" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/aerial-pond.jpg" alt="Aerial waterfront view" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/outdoor-kitchen.jpg" alt="Premium outdoor kitchen and patio" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/primary-bedroom.jpg" alt="Luxurious primary suite" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/kitchen.jpg" alt="Modern gourmet kitchen" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/great-room.jpg" alt="Sophisticated great room" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/game-room.jpg" alt="Entertainment game room" loading="lazy"></figure>
+            <figure class="gallery-item"><img src="assets/images/aerial-sunset.jpg" alt="Stunning aerial sunset" loading="lazy"></figure>
         </div>
     </section>
 
     <section class="video-section">
-        <div class="container">
-            <h2>Full Property Tour</h2>
-            <div class="video-container">
-                <video controls poster="assets/images/hero.jpg">
+        <div class="wrap">
+            <div class="section-head">
+                <div class="label">Walkthrough</div>
+                <h2>Full property tour</h2>
+            </div>
+            <div class="video-frame">
+                <video controls poster="assets/images/hero.jpg" preload="metadata">
                     <source src="assets/video/tour.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -765,33 +720,33 @@
     </section>
 
     <section class="listing-section">
-        <div class="container">
-            <div class="listing-content">
-                <h2>Ready to Experience This Exceptional Estate?</h2>
-                <p>Schedule your private showing today. This premium waterfront property won't remain available long.</p>
-                <button class="call-button" id="call-now-btn-2" data-track-click="listing-section-call-button">Schedule Your Showing Now</button>
-                <p style="margin: 40px 0 0; font-size: 15px;">
-                    <a href="https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/" target="_blank" rel="noopener" class="listing-link" data-track-click="footer-zillow-link">View Complete Listing on Zillow &rarr;</a>
-                </p>
+        <div class="wrap">
+            <div class="listing-grid">
+                <h2>Ready to experience this exceptional estate?</h2>
+                <div class="listing-copy">
+                    <p>Schedule your private showing today. This premium waterfront property won't remain available long.</p>
+                    <button class="call-button" id="call-now-btn-2" data-track-click="listing-section-call-button">Schedule your showing</button>
+                    <a href="https://www.zillow.com/homedetails/12401-SW-Pecan-Lakes-Cir-Lawton-OK-73505/122484278_zpid/" target="_blank" rel="noopener" class="listing-link" data-track-click="footer-zillow-link">View the full listing on Zillow</a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
+        <div class="wrap">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Property Address</h3>
+                    <h3>Property address</h3>
                     <p>12401 SW Pecan Lakes Circle<br>Lawton, Oklahoma 73505<br>Pecan Lakes Community</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Key Details</h3>
-                    <p>4 Bedrooms<br>2.5 Bathrooms<br>~3,000 Square Feet<br>Waterfront Lot<br>Premium Finishes</p>
+                    <h3>Key details</h3>
+                    <p>4 bedrooms<br>2.5 bathrooms<br>~3,000 square feet<br>Waterfront lot<br>Premium finishes</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Schedule Showing</h3>
-                    <p><a href="tel:+15807046296" style="font-size: 20px; font-weight: 600; color: var(--gold-soft); border: none;">(580) 704-6296</a></p>
-                    <p style="margin-top: 20px;"><strong style="color: var(--white); font-weight: 600;">Listing Agent</strong><br>April Elkouri - REALTOR<br>Real Estate Experts<br>#200992<br><a href="mailto:aprilelkouri@gmail.com">aprilelkouri@gmail.com</a></p>
+                    <h3>Schedule a showing</h3>
+                    <p><a href="tel:+15807046296" style="font-family: var(--serif); font-size: 26px; border: none; color: var(--champagne);">(580) 704-6296</a></p>
+                    <p style="margin-top: 22px;"><span style="color: var(--bone);">Listing agent</span><br>April Elkouri, REALTOR<br>Real Estate Experts<br>#200992<br><a href="mailto:aprilelkouri@gmail.com">aprilelkouri@gmail.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -800,35 +755,35 @@
         </div>
     </footer>
 
-    <a href="tel:+15807046296" class="call-button-mobile" id="mobile-call-button" style="display: none;" data-track-click="mobile-fixed-call-button">Call Now to Schedule</a>
+    <a href="tel:+15807046296" class="call-button-mobile" id="mobile-call-button" style="display: none;" data-track-click="mobile-fixed-call-button">Call now to schedule</a>
 
     <!-- Lead Capture Modal -->
     <div id="lead-modal" class="modal" style="display: none;">
         <div class="modal-card">
-            <h2>Schedule Your Tour</h2>
+            <h2>Schedule your tour</h2>
             <p class="modal-lead">Our team will contact you within hours to confirm your private showing.</p>
 
-            <div id="lead-message" role="status" aria-live="polite" style="display: none; margin-bottom: 20px; padding: 16px; border-radius: 8px; font-size: 15px; line-height: 1.5;"></div>
+            <div id="lead-message" role="status" aria-live="polite" style="display: none; margin-bottom: 20px; padding: 16px; border-radius: 2px; font-size: 15px; line-height: 1.5;"></div>
 
             <form id="lead-form" class="modal-form">
                 <!-- Honeypot (Web3Forms botcheck): must stay empty/hidden -->
                 <input type="checkbox" name="botcheck" id="lead-botcheck" tabindex="-1" autocomplete="off" style="display: none;">
-                <input type="text" id="lead-name" class="field" placeholder="Your Full Name" required>
-                <input type="email" id="lead-email" class="field" placeholder="Email Address" required>
-                <input type="tel" id="lead-phone" class="field" placeholder="Phone Number" required>
+                <input type="text" id="lead-name" class="field" placeholder="Your full name" required>
+                <input type="email" id="lead-email" class="field" placeholder="Email address" required>
+                <input type="tel" id="lead-phone" class="field" placeholder="Phone number" required>
 
                 <div>
                     <label class="modal-label" for="lead-type">What interests you most?</label>
                     <select id="lead-type" class="field">
-                        <option value="showing">Schedule a Private Showing</option>
-                        <option value="inquiry">General Information</option>
-                        <option value="offer">Interested in Making an Offer</option>
+                        <option value="showing">Schedule a private showing</option>
+                        <option value="inquiry">General information</option>
+                        <option value="offer">Interested in making an offer</option>
                     </select>
                 </div>
 
                 <textarea id="lead-notes" class="field" placeholder="Any specific questions? (optional)"></textarea>
 
-                <button type="submit" class="modal-submit">Submit Request</button>
+                <button type="submit" class="modal-submit">Submit request</button>
             </form>
 
             <button class="modal-close" onclick="document.getElementById('lead-modal').style.display='none'" aria-label="Close">&times;</button>
