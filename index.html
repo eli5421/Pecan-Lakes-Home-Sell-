@@ -499,33 +499,64 @@
             font-size: 13px;
         }
 
-        /* ===== LEAD MODAL ===== */
+        /* ===== LEAD PANEL (slides in from the right) ===== */
         .modal {
             position: fixed;
             inset: 0;
             z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(5, 6, 7, 0.78);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(5, 6, 7, 0.55);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            animation: fadeIn 0.4s ease both;
         }
 
         .modal-card {
             position: relative;
-            width: 100%;
-            max-width: 520px;
-            max-height: 90vh;
+            width: min(440px, 100%);
+            height: 100%;
+            max-height: none;
             overflow-y: auto;
-            background: var(--graphite);
-            border: 1px solid var(--hairline);
-            border-radius: 2px;
-            padding: 48px;
+            background: linear-gradient(180deg, #0d1215 0%, #080a0c 100%);
+            border-left: 1px solid rgba(210, 181, 122, 0.55);
+            box-shadow:
+                -1px 0 0 rgba(210, 181, 122, 0.25),
+                -18px 0 60px rgba(210, 181, 122, 0.18),
+                inset 1px 0 0 rgba(210, 181, 122, 0.35);
+            padding: 64px 44px 48px;
+            animation: panelIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        }
+
+        .modal-card::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--champagne), transparent);
+            box-shadow: 0 0 14px var(--champagne), 0 0 30px rgba(210, 181, 122, 0.5);
+            animation: led 3.2s ease-in-out infinite;
+        }
+
+        @keyframes panelIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes led {
+            0%, 100% { opacity: 0.55; }
+            50% { opacity: 1; }
         }
 
         .modal-card h2 {
-            font-size: 44px;
+            font-size: 42px;
             margin-bottom: 12px;
         }
 
@@ -545,6 +576,50 @@
             line-height: 1;
             color: var(--mist);
             cursor: pointer;
+        }
+
+        .info-tab {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            z-index: 900;
+            transform: translateY(-50%) rotate(180deg);
+            writing-mode: vertical-rl;
+            padding: 18px 12px;
+            background: var(--graphite);
+            color: var(--champagne);
+            border: 1px solid rgba(210, 181, 122, 0.5);
+            border-right: none;
+            font-family: inherit;
+            font-size: 13px;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            box-shadow: 0 0 18px rgba(210, 181, 122, 0.25);
+        }
+
+        body:has(#lead-modal[style*="flex"]) .info-tab { display: none; }
+
+        /* Light confetti: a single drift on page load */
+        .confetti {
+            position: fixed;
+            inset: 0;
+            z-index: 950;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti i {
+            position: absolute;
+            top: -20px;
+            width: 7px;
+            height: 11px;
+            border-radius: 1px;
+            opacity: 0.85;
+            animation: drift linear forwards;
+        }
+
+        @keyframes drift {
+            to { transform: translate3d(var(--dx), 110vh, 0) rotate(var(--rot)); }
         }
 
         .modal-form {
@@ -782,6 +857,8 @@
 
     <a href="tel:+15807046296" class="call-button-mobile" id="mobile-call-button" style="display: none;" data-track-click="mobile-fixed-call-button">Call now to schedule</a>
 
+    <button class="info-tab" id="info-tab" type="button">Request info</button>
+
     <!-- Lead Capture Modal -->
     <div id="lead-modal" class="modal" style="display: none;">
         <div class="modal-card">
@@ -824,6 +901,44 @@
             <button class="modal-close" onclick="document.getElementById('lead-modal').style.display='none'" aria-label="Close">&times;</button>
         </div>
     </div>
+
+    <script>
+        // Opens the lead panel from the tab; the panel's own close button hides it again.
+        document.getElementById('info-tab').addEventListener('click', function () {
+            document.getElementById('lead-modal').style.display = 'flex';
+        });
+
+        // Light confetti, once on load (skipped for reduced motion).
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var layer = document.createElement('div');
+            layer.className = 'confetti';
+            var colors = ['#ece8df', '#d2b57a', '#e8d4ae', '#9aa3ab'];
+            for (var n = 0; n < 46; n++) {
+                var bit = document.createElement('i');
+                bit.style.left = (Math.random() * 100) + '%';
+                bit.style.background = colors[n % colors.length];
+                bit.style.setProperty('--dx', ((Math.random() - 0.5) * 160) + 'px');
+                bit.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+                bit.style.animationDuration = (5 + Math.random() * 4) + 's';
+                bit.style.animationDelay = (Math.random() * 1.6) + 's';
+                layer.appendChild(bit);
+            }
+            document.body.appendChild(layer);
+            setTimeout(function () { layer.remove(); }, 11000);
+        })();
+
+        // Open the panel by itself once per visit, after a short pause.
+        (function () {
+            var seen = false;
+            try { seen = sessionStorage.getItem('pecan_panel_seen') === '1'; } catch (e) {}
+            if (seen) return;
+            setTimeout(function () {
+                document.getElementById('lead-modal').style.display = 'flex';
+                try { sessionStorage.setItem('pecan_panel_seen', '1'); } catch (e) {}
+            }, 9000);
+        })();
+    </script>
 
     <script>
         // ---- Lead delivery (Web3Forms) ----
