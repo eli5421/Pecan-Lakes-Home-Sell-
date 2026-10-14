@@ -319,6 +319,49 @@
             font-size: clamp(40px, 4.6vw, 64px);
         }
 
+        /* ===== FEATURED FILM ===== */
+        .film-section {
+            padding: 120px 0;
+            border-top: 1px solid var(--hairline);
+        }
+
+        .film-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 380px) 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .film-frame {
+            aspect-ratio: 9 / 16;
+            background: var(--steel);
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--hairline);
+        }
+
+        .film-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .film-copy h2 {
+            font-size: clamp(44px, 5.4vw, 80px);
+            line-height: 1;
+        }
+
+        .film-copy p {
+            margin: 24px 0 0;
+            max-width: 380px;
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--mist);
+        }
+
+        .film-copy .call-button { margin-top: 40px; }
+
         /* ===== ABOUT ===== */
         .about-body {
             display: grid;
@@ -599,7 +642,71 @@
 
         body:has(#lead-modal[style*="flex"]) .info-tab { display: none; }
 
-        /* Light confetti: a single drift on page load */
+        /* Compact scroll CTA: appears bottom-right after the hero */
+        .scroll-cta {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 800;
+            width: 300px;
+            padding: 22px 22px 20px;
+            background: rgba(12, 15, 18, 0.94);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(210, 181, 122, 0.45);
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 24px rgba(210, 181, 122, 0.12);
+            opacity: 0;
+            transform: translateY(16px);
+            pointer-events: none;
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+        }
+
+        .scroll-cta.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .scroll-cta h3 {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .scroll-cta p {
+            font-size: 14px;
+            color: var(--mist);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .scroll-cta .call-button {
+            width: 100%;
+            margin-top: 0;
+            padding: 14px 20px;
+            font-size: 13px;
+        }
+
+        .scroll-cta-close {
+            position: absolute;
+            top: 6px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            line-height: 1;
+            color: var(--mist);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        body:has(#lead-modal[style*="flex"]) .scroll-cta { display: none; }
+
+        @media (max-width: 640px) {
+            .scroll-cta { right: 12px; left: 12px; width: auto; bottom: 76px; }
+        }
+
+        /* Light confetti: a sparse, slow drift that keeps falling gently */
         .confetti {
             position: fixed;
             inset: 0;
@@ -611,11 +718,11 @@
         .confetti i {
             position: absolute;
             top: -20px;
-            width: 7px;
-            height: 11px;
+            width: 5px;
+            height: 8px;
             border-radius: 1px;
-            opacity: 0.85;
-            animation: drift linear forwards;
+            opacity: 0.4;
+            animation: drift linear infinite;
         }
 
         @keyframes drift {
@@ -678,7 +785,10 @@
             .spec-grid { grid-template-columns: repeat(2, 1fr); }
             .spec:nth-child(3) { border-left: none; }
             .spec:nth-child(n+3) { border-top: 1px solid var(--hairline); }
-            .section-head, .about-body, .listing-grid { grid-template-columns: 1fr; gap: 24px; }
+            .section-head, .about-body, .listing-grid, .film-grid { grid-template-columns: 1fr; gap: 24px; }
+            .film-frame { max-width: 360px; width: 100%; margin: 0 auto; }
+            .film-copy { text-align: center; }
+            .film-copy p { margin-left: auto; margin-right: auto; }
             .about-col { grid-column: 1; }
             .section-head { margin-bottom: 56px; }
             .header-link:not([href^="tel:"]) { display: none; }
@@ -756,6 +866,21 @@
         </div>
     </section>
 
+    <section class="film-section">
+        <div class="wrap film-grid">
+            <div class="film-frame">
+                <video autoplay muted loop playsinline controls poster="assets/images/featured-film-poster.jpg" preload="auto">
+                    <source src="assets/video/featured-film.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="film-copy">
+                <h2>Pecan Lakes, in motion</h2>
+                <p>Thirty seconds on the property. Unmute for sound.</p>
+                <button class="call-button" id="call-now-btn-3" data-track-click="film-section-call-button">Schedule private showing</button>
+            </div>
+        </div>
+    </section>
+
     <section class="about-section">
         <div class="wrap">
             <div class="section-head">
@@ -790,7 +915,6 @@
             <figure class="gallery-item"><img src="assets/images/great-room.jpg" alt="Sophisticated great room" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/game-room.jpg" alt="Entertainment game room" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/aerial-sunset.jpg" alt="Stunning aerial sunset" loading="lazy"></figure>
-            <figure class="gallery-item"><img src="assets/images/aerial-home.jpg" alt="Aerial view of the home beside the pond" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/covered-patio.jpg" alt="Covered brick patio with outdoor fireplace at sunset" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/breakfast-nook.jpg" alt="Breakfast nook overlooking the lake" loading="lazy"></figure>
             <figure class="gallery-item"><img src="assets/images/living-fireplace.jpg" alt="Living room with built-in shelving and fireplace" loading="lazy"></figure>
@@ -857,6 +981,13 @@
 
     <a href="tel:+15807046296" class="call-button-mobile" id="mobile-call-button" style="display: none;" data-track-click="mobile-fixed-call-button">Call now to schedule</a>
 
+    <aside class="scroll-cta" id="scroll-cta" aria-label="Request a showing">
+        <button class="scroll-cta-close" id="scroll-cta-close" type="button" aria-label="Dismiss">&times;</button>
+        <h3>Interested in this home?</h3>
+        <p>Tell us a little about yourself and we will arrange a private showing.</p>
+        <button class="call-button" id="call-now-btn-4" data-track-click="scroll-cta-button">Request a showing</button>
+    </aside>
+
     <button class="info-tab" id="info-tab" type="button">Request info</button>
 
     <!-- Lead Capture Modal -->
@@ -908,35 +1039,42 @@
             document.getElementById('lead-modal').style.display = 'flex';
         });
 
-        // Light confetti, once on load (skipped for reduced motion).
+        // Light confetti: a few pieces drifting slowly all the way down the page (skipped for reduced motion).
         (function () {
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
             var layer = document.createElement('div');
             layer.className = 'confetti';
             var colors = ['#ece8df', '#d2b57a', '#e8d4ae', '#9aa3ab'];
-            for (var n = 0; n < 46; n++) {
+            for (var n = 0; n < 16; n++) {
                 var bit = document.createElement('i');
                 bit.style.left = (Math.random() * 100) + '%';
                 bit.style.background = colors[n % colors.length];
-                bit.style.setProperty('--dx', ((Math.random() - 0.5) * 160) + 'px');
-                bit.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
-                bit.style.animationDuration = (5 + Math.random() * 4) + 's';
-                bit.style.animationDelay = (Math.random() * 1.6) + 's';
+                bit.style.setProperty('--dx', ((Math.random() - 0.5) * 120) + 'px');
+                bit.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
+                bit.style.animationDuration = (18 + Math.random() * 14) + 's';
+                bit.style.animationDelay = (-Math.random() * 30) + 's';
                 layer.appendChild(bit);
             }
             document.body.appendChild(layer);
-            setTimeout(function () { layer.remove(); }, 11000);
         })();
 
-        // Open the panel by itself once per visit, after a short pause.
+        // Compact CTA: rises in the bottom-right once the visitor scrolls past the hero.
         (function () {
-            var seen = false;
-            try { seen = sessionStorage.getItem('pecan_panel_seen') === '1'; } catch (e) {}
-            if (seen) return;
-            setTimeout(function () {
-                document.getElementById('lead-modal').style.display = 'flex';
-                try { sessionStorage.setItem('pecan_panel_seen', '1'); } catch (e) {}
-            }, 9000);
+            var card = document.getElementById('scroll-cta');
+            var dismissed = false;
+            try { dismissed = sessionStorage.getItem('pecan_cta_dismissed') === '1'; } catch (e) {}
+            if (dismissed) return;
+            var hero = document.querySelector('.hero');
+            function check() {
+                var past = hero ? hero.getBoundingClientRect().bottom < window.innerHeight * 0.4 : window.scrollY > 800;
+                card.classList.toggle('show', past);
+            }
+            window.addEventListener('scroll', check, { passive: true });
+            check();
+            document.getElementById('scroll-cta-close').addEventListener('click', function () {
+                card.style.display = 'none';
+                try { sessionStorage.setItem('pecan_cta_dismissed', '1'); } catch (e) {}
+            });
         })();
     </script>
 
