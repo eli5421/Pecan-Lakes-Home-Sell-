@@ -96,7 +96,7 @@ This tracks visits coming from your Facebook post.
 
 ## Support
 
-For showing inquiries: (580) 498-0224
+For showing inquiries: (580) 704-6296
 Listing Agent: April Elkouri, Real Estate Experts, LLC
 
 ---
