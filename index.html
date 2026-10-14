@@ -542,50 +542,37 @@
             font-size: 13px;
         }
 
-        /* ===== LEAD PANEL (slides in from the right) ===== */
+        /* ===== LEAD POPUP (centered card) ===== */
         .modal {
             position: fixed;
             inset: 0;
             z-index: 1000;
             display: flex;
-            justify-content: flex-end;
-            background: rgba(5, 6, 7, 0.55);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            animation: fadeIn 0.4s ease both;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(5, 6, 7, 0.7);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            animation: fadeIn 0.35s ease both;
         }
 
         .modal-card {
             position: relative;
-            width: min(440px, 100%);
-            height: 100%;
-            max-height: none;
+            width: min(480px, 100%);
+            max-height: 90vh;
             overflow-y: auto;
-            background: linear-gradient(180deg, #0d1215 0%, #080a0c 100%);
-            border-left: 1px solid rgba(210, 181, 122, 0.55);
-            box-shadow:
-                -1px 0 0 rgba(210, 181, 122, 0.25),
-                -18px 0 60px rgba(210, 181, 122, 0.18),
-                inset 1px 0 0 rgba(210, 181, 122, 0.35);
-            padding: 64px 44px 48px;
-            animation: panelIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+            background: var(--bone);
+            color: var(--void);
+            border-radius: 20px;
+            padding: 48px 44px 40px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(210, 181, 122, 0.35);
+            animation: popIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
 
-        .modal-card::before {
-            content: '';
-            position: absolute;
-            left: -1px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, transparent, var(--champagne), transparent);
-            box-shadow: 0 0 14px var(--champagne), 0 0 30px rgba(210, 181, 122, 0.5);
-            animation: led 3.2s ease-in-out infinite;
-        }
-
-        @keyframes panelIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(14px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes fadeIn {
@@ -593,69 +580,108 @@
             to { opacity: 1; }
         }
 
-        @keyframes led {
-            0%, 100% { opacity: 0.55; }
-            50% { opacity: 1; }
+        .modal-card h2 {
+            color: var(--void);
+            font-size: 44px;
+            font-weight: 500;
+            line-height: 1.02;
+            margin-bottom: 14px;
+            padding-right: 28px;
         }
 
-        .modal-card h2 {
-            font-size: 42px;
-            margin-bottom: 12px;
+        .modal-hook {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--void);
+            margin-bottom: 6px;
         }
 
         .modal-lead {
-            color: var(--mist);
+            color: #4a545c;
             font-size: 15px;
-            margin-bottom: 28px;
+            margin-bottom: 26px;
         }
 
         .modal-close {
             position: absolute;
-            top: 14px;
-            right: 18px;
+            top: 18px;
+            right: 20px;
             background: none;
             border: none;
-            font-size: 28px;
+            font-size: 30px;
             line-height: 1;
-            color: var(--mist);
+            color: var(--void);
             cursor: pointer;
         }
 
-        .info-tab {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            z-index: 900;
-            transform: translateY(-50%) rotate(180deg);
-            writing-mode: vertical-rl;
-            padding: 18px 12px;
-            background: var(--graphite);
-            color: var(--champagne);
-            border: 1px solid rgba(210, 181, 122, 0.5);
-            border-right: none;
-            font-family: inherit;
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .modal-label {
+            display: block;
+            margin-bottom: 8px;
             font-size: 13px;
-            letter-spacing: 0.04em;
-            cursor: pointer;
-            box-shadow: 0 0 18px rgba(210, 181, 122, 0.25);
+            font-weight: 600;
+            color: var(--void);
         }
 
-        body:has(#lead-modal[style*="flex"]) .info-tab { display: none; }
+        .field {
+            width: 100%;
+            padding: 14px 18px;
+            background: #ffffff;
+            color: var(--void);
+            border: 1px solid rgba(5, 6, 7, 0.14);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
 
-        /* Compact scroll CTA: appears bottom-right after the hero */
+        .field::placeholder { color: #7a848c; }
+
+        .field:focus {
+            outline: none;
+            border-color: var(--champagne-deep);
+            box-shadow: 0 0 0 3px rgba(210, 181, 122, 0.35);
+        }
+
+        textarea.field { resize: vertical; min-height: 88px; }
+
+        .modal-submit {
+            padding: 20px 28px;
+            background: var(--champagne);
+            color: var(--void);
+            border: none;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            box-shadow: 0 14px 30px rgba(168, 138, 82, 0.35);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .modal-submit:hover {
+            background: #e0c68e;
+            transform: translateY(-1px);
+        }
+
+        /* Compact scroll CTA: a teaser card that rises bottom-right after the hero */
         .scroll-cta {
             position: fixed;
             right: 24px;
             bottom: 24px;
             z-index: 800;
-            width: 300px;
-            padding: 22px 22px 20px;
-            background: rgba(12, 15, 18, 0.94);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(210, 181, 122, 0.45);
-            border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 24px rgba(210, 181, 122, 0.12);
+            width: 340px;
+            padding: 34px 30px 28px;
+            background: var(--bone);
+            color: var(--void);
+            border-radius: 20px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(210, 181, 122, 0.35);
             opacity: 0;
             transform: translateY(16px);
             pointer-events: none;
@@ -669,33 +695,49 @@
         }
 
         .scroll-cta h3 {
-            font-size: 24px;
-            margin-bottom: 6px;
+            color: var(--void);
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.02;
+            margin-bottom: 10px;
+            padding-right: 22px;
+        }
+
+        .scroll-cta .scroll-cta-hook {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--void);
+            margin-bottom: 4px;
         }
 
         .scroll-cta p {
             font-size: 14px;
-            color: var(--mist);
-            margin-bottom: 16px;
+            color: #4a545c;
+            margin-bottom: 20px;
             line-height: 1.5;
         }
 
         .scroll-cta .call-button {
             width: 100%;
             margin-top: 0;
-            padding: 14px 20px;
-            font-size: 13px;
+            padding: 17px 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: none;
+            box-shadow: 0 12px 26px rgba(168, 138, 82, 0.35);
         }
 
         .scroll-cta-close {
             position: absolute;
-            top: 6px;
-            right: 10px;
+            top: 14px;
+            right: 16px;
             background: none;
             border: none;
-            font-size: 22px;
+            font-size: 24px;
             line-height: 1;
-            color: var(--mist);
+            color: var(--void);
             cursor: pointer;
             padding: 4px;
         }
@@ -705,78 +747,6 @@
         @media (max-width: 640px) {
             .scroll-cta { right: 12px; left: 12px; width: auto; bottom: 76px; }
         }
-
-        /* Light confetti: a sparse, slow drift that keeps falling gently */
-        .confetti {
-            position: fixed;
-            inset: 0;
-            z-index: 950;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .confetti i {
-            position: absolute;
-            top: -20px;
-            width: 5px;
-            height: 8px;
-            border-radius: 1px;
-            opacity: 0.4;
-            animation: drift linear infinite;
-        }
-
-        @keyframes drift {
-            to { transform: translate3d(var(--dx), 110vh, 0) rotate(var(--rot)); }
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .modal-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13px;
-            color: var(--mist);
-        }
-
-        .field {
-            width: 100%;
-            padding: 14px 16px;
-            background: var(--void);
-            color: var(--bone);
-            border: 1px solid var(--hairline);
-            border-radius: 2px;
-            font-family: inherit;
-            font-size: 15px;
-            transition: border-color 0.3s ease;
-        }
-
-        .field::placeholder { color: rgba(154, 163, 171, 0.7); }
-
-        .field:focus {
-            outline: none;
-            border-color: var(--champagne);
-        }
-
-        textarea.field { resize: vertical; min-height: 88px; }
-
-        .modal-submit {
-            padding: 16px;
-            background: var(--champagne);
-            color: var(--void);
-            border: none;
-            border-radius: 2px;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .modal-submit:hover { background: #e0c68e; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 960px) {
@@ -984,7 +954,8 @@
     <aside class="scroll-cta" id="scroll-cta" aria-label="Request a showing">
         <button class="scroll-cta-close" id="scroll-cta-close" type="button" aria-label="Dismiss">&times;</button>
         <h3>Interested in this home?</h3>
-        <p>Tell us a little about yourself and we will arrange a private showing.</p>
+        <p class="scroll-cta-hook">No obligation.</p>
+        <p>Takes about a minute. We will arrange a private showing.</p>
         <button class="call-button" id="call-now-btn-4" data-track-click="scroll-cta-button">Request a showing</button>
     </aside>
 
@@ -993,8 +964,9 @@
     <!-- Lead Capture Modal -->
     <div id="lead-modal" class="modal" style="display: none;">
         <div class="modal-card">
-            <h2>Schedule your tour</h2>
-            <p class="modal-lead">Share your details and we will contact you to arrange a private showing.</p>
+            <h2>Schedule your private showing.</h2>
+            <p class="modal-hook">No obligation.</p>
+            <p class="modal-lead">Takes about a minute. We will contact you to arrange a time.</p>
 
             <div id="lead-message" role="status" aria-live="polite" style="display: none; margin-bottom: 20px; padding: 16px; border-radius: 2px; font-size: 15px; line-height: 1.5;"></div>
 
@@ -1026,7 +998,7 @@
 
                 <textarea id="lead-notes" class="field" placeholder="Any specific questions? (optional)"></textarea>
 
-                <button type="submit" class="modal-submit">Submit request</button>
+                <button type="submit" class="modal-submit">Request a showing</button>
             </form>
 
             <button class="modal-close" onclick="document.getElementById('lead-modal').style.display='none'" aria-label="Close">&times;</button>
