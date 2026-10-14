@@ -159,6 +159,42 @@
             to { transform: scale(1); }
         }
 
+        /* Gold light sweep and rising specks over the hero */
+        .hero-sheen {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(105deg, transparent 35%, rgba(232, 212, 174, 0.14) 50%, transparent 65%);
+            background-size: 260% 100%;
+            animation: sheen 12s ease-in-out infinite;
+        }
+
+        @keyframes sheen {
+            from { background-position: 100% 0; }
+            to { background-position: 0% 0; }
+        }
+
+        .hero-speck {
+            position: absolute;
+            bottom: -10px;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--gold-soft);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translate3d(0, 0, 0); opacity: 0; }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.5; }
+            100% { transform: translate3d(var(--sx, 20px), -100vh, 0); opacity: 0; }
+        }
+
         /* Slow, continuous camera drift over the home */
         @keyframes drift {
             from { transform: scale(1) translate3d(0, 0, 0); }
@@ -692,12 +728,19 @@
             transform: translateY(16px);
             pointer-events: none;
             transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+            animation: float 5s ease-in-out infinite alternate;
         }
 
         .scroll-cta.show {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
+        }
+
+        /* A gentle float on its own property so it never fights the show transition */
+        @keyframes float {
+            from { translate: 0 0; }
+            to { translate: 0 -8px; }
         }
 
         .scroll-cta h3 {
@@ -807,6 +850,7 @@
     </header>
 
     <section class="hero" style="border-top: none; padding: 0;">
+        <div class="hero-sheen" aria-hidden="true"></div>
         <div class="hero-main">
             <div class="hero-copy">
                 <div class="label">Lawton, Oklahoma &middot; Waterfront estate</div>
@@ -1034,6 +1078,22 @@
             document.body.appendChild(layer);
         })();
 
+        // Gold specks rising through the hero.
+        (function () {
+            var hero = document.querySelector('.hero');
+            if (!hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            for (var n = 0; n < 14; n++) {
+                var sp = document.createElement('span');
+                sp.className = 'hero-speck';
+                sp.style.left = (Math.random() * 100) + '%';
+                sp.style.setProperty('--sx', ((Math.random() - 0.5) * 60) + 'px');
+                sp.style.width = sp.style.height = (2 + Math.random() * 3) + 'px';
+                sp.style.animationDuration = (12 + Math.random() * 12) + 's';
+                sp.style.animationDelay = (-Math.random() * 20) + 's';
+                hero.appendChild(sp);
+            }
+        })();
+
         // Lead popup opens over the hero shortly after load, once per visit.
         (function () {
             var opened = false;
@@ -1051,13 +1111,7 @@
             var dismissed = false;
             try { dismissed = sessionStorage.getItem('pecan_cta_dismissed') === '1'; } catch (e) {}
             if (dismissed) return;
-            var hero = document.querySelector('.hero');
-            function check() {
-                var past = hero ? hero.getBoundingClientRect().bottom < window.innerHeight * 0.4 : window.scrollY > 800;
-                card.classList.toggle('show', past);
-            }
-            window.addEventListener('scroll', check, { passive: true });
-            check();
+            card.classList.add('show');
             document.getElementById('scroll-cta-close').addEventListener('click', function () {
                 card.style.display = 'none';
                 try { sessionStorage.setItem('pecan_cta_dismissed', '1'); } catch (e) {}
